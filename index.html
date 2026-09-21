@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna-Cafe</title>
+  <link rel="icon" type="image/png" href="images/favicon.webp">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+<header class="header">
+</header>
+
+<nav class="navbar">
+  <a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+  <a href="#careers" class="nav-link"><i class="fa-solid fa-briefcase"></i><span>Careers</span></a>
+  <a href="#about" class="nav-link"><i class="fa-solid fa-circle-info"></i><span>About Us</span></a>
+  <a href="#reviews" class="nav-link"><i class="fa-solid fa-star"></i><span>Reviews</span></a>
+  <button class="menu-button" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#careers">Careers</a>
+  <a href="#about">About Us</a>
+  <a href="#reviews">Reviews</a>
+</div>
+
+<main id="home">
+
+  <section class="gallery-section">
+    <div class="section-title"><span></span><h2>Our Cafe Moments</h2><span></span></div>
+    <div class="gallery-wrapper">
+      <div class="gallery-track" id="galleryTrack">
+        <div class="gallery-card"><img src="images/cafe1.webp" alt="Krishna Cafe"></div>
+        <div class="gallery-card"><img src="images/cafe2.webp" alt="Cafe Interior"></div>
+        <div class="gallery-card"><img src="images/cafe3.webp" alt="Cafe Seating"></div>
+        <div class="gallery-card"><img src="images/cafe4.webp" alt="Coffee"></div>
+      </div>
+    </div>
+    <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  </section>
+
+  <section class="why-section" id="about">
+    <div class="section-title"><span></span><h2>Why Choose Us</h2><span></span></div>
+    <div class="why-container">
+      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-leaf"></i></div><h3>Premium Quality</h3><p>We use carefully selected ingredients to deliver quality in every bite.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Hygienic & Safe</h3><p>Clean preparation and hygienic surroundings for a comfortable experience.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-users"></i></div><h3>Friendly Service</h3><p>Our team is always ready to serve you with a welcoming smile.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-heart"></i></div><h3>Trusted by Many</h3><p>Built on quality, consistency and the trust of our customers.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-mug-hot"></i></div><h3>Great Coffee Experience</h3><p>Freshly prepared beverages made for memorable moments.</p></div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="section-title menu-title"><span></span><h2>Our Menu</h2><span></span></div>
+    <div class="menu-slider">
+      <div class="menu-card" onclick="showMenu('tea')">
+        <img src="images/Tea.webp" alt="Tea">
+
+        <div class="menu-name">
+          <i class="fa-solid fa-leaf"></i>
+          <span>Tea</span>
+        </div>
+      </div>
+      <div class="menu-card" onclick="showMenu('coffee')"><img src="images/Coffee.webp" alt="Coffee"><div class="menu-name"><i class="fa-solid fa-mug-hot"></i><span>Coffee</span></div></div>
+      <div class="menu-card" onclick="showMenu('malted')"><img src="images/Malted-Powders.webp" alt="Malted Powders"><div class="menu-name"><i class="fa-solid fa-glass-water"></i><span>Malted Powders</span></div></div>
+      <div class="menu-card" onclick="showMenu('snacks')"><img src="images/snacks.webp" alt="Snacks"><div class="menu-name"><i class="fa-solid fa-utensils"></i><span>Snacks</span></div></div>
+      <div class="menu-card" onclick="showMenu('biscuits')"><img src="images/Biscuits.webp" alt="Biscuits"><div class="menu-name"><i class="fa-solid fa-cookie-bite"></i><span>Biscuits</span></div></div>
+      <div class="menu-card" onclick="showMenu('drinks')"><img src="images/Drinks.webp" alt="Drinks"><div class="menu-name"><i class="fa-solid fa-glass-martini"></i><span>Drinks</span></div></div>
+    </div>
+  </section>  
+<div id="teaMenu" class="item-menu">
+
+    <button onclick="closeMenu()">← Back</button>
+
+    <h2>🍵 Tea Menu</h2>
+
+    <div class="item-list">
+
+        <div class="item">
+            <span>Tea</span>
+            <strong>₹12</strong>
+        </div>
+
+        <div class="item">
+            <span>Special Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Ginger Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Elaichi Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Lemon Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Green Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Black Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Badam Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Allam Bellam Tea</span>
+            <strong>₹20</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- COFFEE MENU -->
+
+<div id="coffeeMenu" class="item-menu">
+
+    <button onclick="closeMenu()">← Back</button>
+
+    <h2>☕ Coffee Menu</h2>
+
+    <div class="item-list">
+
+        <div class="item">
+            <span>Bru Coffee</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Black Coffee</span>
+            <strong>₹25</strong>
+        </div>
+
+        <div class="item">
+            <span>Sonti Coffee</span>
+            <strong>₹25</strong>
+        </div>
+
+    </div>
+
+</div>
+<!-- MALTED POWDERS MENU -->
+
+<div id="maltedMenu" class="item-menu">
+
+    <button onclick="closeMenu()">← Back</button>
+
+    <h2>🥛 Malted Powders Menu</h2>
+
+    <div class="item-list">
+
+        <div class="item">
+            <span>Milk</span>
+            <strong>₹20</strong>
+        </div>
+
+
+        <div class="item">
+            <span>Boost</span>
+            <strong>₹30</strong>
+        </div>
+
+        <div class="item">
+            <span>Horlicks</span>
+            <strong>₹30</strong>
+        </div>
+
+        <div class="item">
+            <span>Ragi Malt</span>
+            <strong>₹30</strong>
+        </div>
+
+        <div class="item">
+            <span>Bournvita</span>
+            <strong>₹30</strong>
+        </div>
+      </div>
+
+    </div>
+<!-- SNACKS MENU -->
+
+<div id="snacksMenu" class="item-menu">
+
+    <button onclick="closeMenu()">← Back</button>
+
+    <h2>🍟 Snacks Menu</h2>
+
+    <div class="item-list">
+
+        <div class="item">
+            <span>Samosa</span>
+            <strong>₹15</strong>
+        </div>
+    </div>
+
+</div>
+<!-- BISCUITS MENU -->
+
+<div id="biscuitsMenu" class="item-menu">
+
+    <button onclick="closeMenu()">← Back</button>
+
+    <h2>🍪 Biscuits Menu</h2>
+
+    <div class="item-list">
+
+        <div class="item">
+            <span>Parle-G</span>
+            <strong>₹10</strong>
+        </div>
+
+        <div class="item">
+            <span>Good Day</span>
+            <strong>₹10</strong>
+        </div>
+
+        <div class="item">
+            <span>Marie Gold</span>
+            <strong>₹10</strong>
+        </div>
+
+        <div class="item">
+            <span>50-50</span>
+            <strong>₹10</strong>
+        </div>
+
+        <div class="item">
+            <span>Bourbon</span>
+            <strong>₹10</strong>
+        </div>
+
+        <div class="item">
+            <span>Dark Fantasy</span>
+            <strong>₹30</strong>
+        </div>
+
+    </div>
+
+</div>
+<!-- DRINKS MENU -->
+ <div id="drinksMenu" class="item-menu">
+
+    <button onclick="closeMenu()">← Back</button>
+
+    <h2>🥤 Drinks Menu</h2>
+
+    <div class="item-list">
+
+        <div class="item">
+            <span>Sprite</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Thumbs-Up</span>
+            <strong>₹20</strong>
+        </div>
+        
+        <div class="item">
+            <span>Maaza</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Pulpi Orange</span>
+            <strong>₹20</strong>
+        </div>
+        
+        <div class="item">
+            <span>Limka</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Jeera</span>
+            <strong>₹20</strong>
+        </div>
+        
+        <div class="item">
+            <span>Campa</span>
+            <strong>₹20</strong>
+        </div>
+
+        <div class="item">
+            <span>Fanta</span>
+            <strong>₹20</strong>
+        </div>
+        
+     </div>
+  </div>
+  <section class="careers-section" id="careers">
+    <h2>Join Our Team</h2>
+    <p>Love cafés, people and great service? Come grow with Krishna Cafe.</p>
+    <button class="career-btn" onclick="openCareers()">Explore Careers</button>
+  </section>
+  <!-- CAREERS SECTION -->
+
+<section id="careersPage" class="careers-section1">
+    <button onclick="closeCareers()">← Back</button> 
+
+    <div class="careers-heading">
+        <h2>Careers at Krishna Cafe</h2>
+
+        <p>
+            Join our team and grow with Krishna Cafe ☕
+        </p>
+    </div>
+
+
+    <div class="jobs-container">
+
+        <!-- CAFE STAFF -->
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                <i class="fa-solid fa-mug-hot"></i>
+            </div>
+
+            <h3>Cafe Staff</h3>
+
+            <p>
+                Help customers and create a friendly
+                cafe experience.
+            </p>
+
+            <button onclick="openApplication('Cafe Staff')">
+                Apply Now
+            </button>
+
+        </div>
+
+
+        <!-- KITCHEN HELPER -->
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                <i class="fa-solid fa-kitchen-set"></i>
+            </div>
+
+            <h3>Kitchen Helper</h3>
+
+            <p>
+                Assist with food preparation and
+                maintain kitchen cleanliness.
+            </p>
+
+            <button onclick="openApplication('Kitchen Helper')">
+                Apply Now
+            </button>
+
+        </div>
+
+
+        <!-- CASHIER -->
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                <i class="fa-solid fa-cash-register"></i>
+            </div>
+
+            <h3>Cashier</h3>
+
+            <p>
+                Handle customer orders, billing and
+                provide friendly service.
+            </p>
+
+            <button onclick="openApplication('Cashier')">
+                Apply Now
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- APPLICATION FORM -->
+
+<div id="applicationBox" class="application-overlay">
+
+    <div class="application-form">
+
+        <button class="close-btn" onclick="closeApplication()">
+            ×
+        </button>
+
+        <h2>Job Application</h2>
+
+        <p>Apply for a position at Krishna Cafe</p>
+
+        <form id="jobForm">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="appName"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>Phone Number</label>
+
+            <input
+                type="tel"
+                id="appPhone"
+                placeholder="Enter phone number"
+                required
+            >
+
+
+            <label>Position</label>
+
+            <input
+                type="text"
+                id="appPosition"
+                readonly
+            >
+
+
+            <label>Experience</label>
+
+            <select id="appExperience" required>
+
+                <option value="">
+                    Select experience
+                </option>
+
+                <option>Fresher</option>
+
+                <option>Less than 1 year</option>
+
+                <option>1-2 years</option>
+
+                <option>2+ years</option>
+
+            </select>
+
+
+            <label>Message</label>
+
+            <textarea
+                id="appMessage"
+                placeholder="Tell us about yourself"
+                required
+            ></textarea>
+
+
+            <button type="submit" class="submit-application">
+                Submit Application
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<section class="reviews-section" id="reviews">
+
+    <div class="reviews-heading">
+        <h2>Customer Reviews</h2>
+        <p>See what our customers say about Krishna Cafe ☕</p>
+    </div>
+
+    <div class="reviews-container">
+
+        <div class="review-card">
+            <div class="review-stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p>
+                "The tea and snacks were really good.
+                Nice place to spend time with friends."
+            </p>
+
+            <h3>Sadam Sai</h3>
+            <span>Regular Customer</span>
+        </div>
+
+
+        <div class="review-card">
+            <div class="review-stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p>
+                "Good quality food and friendly service.
+                I really enjoyed the coffee."
+            </p>
+
+            <h3>Davood</h3>
+            <span>Customer</span>
+        </div>
+
+
+        <div class="review-card">
+            <div class="review-stars">
+                ⭐⭐⭐⭐☆
+            </div>
+
+            <p>
+                "Nice cafe with reasonable prices.
+                The atmosphere is comfortable."
+            </p>
+
+            <h3>Rahamthullah</h3>
+            <span>Customer</span>
+        </div>
+
+    </div>
+
+    <button class="write-review-btn" onclick="openReviewForm()">
+        Write a Review
+    </button>
+
+</section>
+<div id="reviewBox" class="review-overlay">
+
+    <div class="review-form">
+
+        <button class="close-review" onclick="closeReviewForm()">
+            ×
+        </button>
+
+        <h2>Write a Review</h2>
+
+        <p>Share your experience at Krishna Cafe ☕</p>
+
+        <form id="reviewForm">
+
+            <label>Your Name</label>
+
+            <input
+                type="text"
+                id="reviewName"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label>Rating</label>
+
+            <select id="reviewRating" required>
+                <option value="">Select rating</option>
+                <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                <option value="3">⭐⭐⭐ 3 Stars</option>
+                <option value="2">⭐⭐ 2 Stars</option>
+                <option value="1">⭐ 1 Star</option>
+            </select>
+
+            <label>Your Review</label>
+
+            <textarea
+                id="reviewMessage"
+                placeholder="Write your experience..."
+                required
+            ></textarea>
+
+            <button type="submit" class="submit-review">
+                Submit Review
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="footer-logo"><i class="fa-solid fa-mug-hot"></i><h2>Krishna <span>Cafe</span></h2></div>
+  <p class="footer-tagline">Good Feel • Great Coffee • Happy Moments</p>
+  <div class="footer-line"></div>
+  <div class="footer-info">
+    <div class="footer-item"><i class="fa-solid fa-location-dot"></i><div><h3>kanigiri</h3><p>Opposite RTC Bus Stand<br>Kanigiri, Andhra Pradesh</p></div></div>
+    <div class="footer-item"><i class="fa-solid fa-phone"></i><div><h3>Contact</h3><p>+91 92923 53513</p></div></div>
+    <div class="footer-item"><i class="fa-solid fa-envelope"></i><div><h3>Email</h3><p>krishnacafe@example.com</p></div></div>
+  </div>
+  <div class="footer-info"><a href="https://www.google.com/maps" target="_blank" class="map-btn"><i class="fa-solid fa-map-location-dot"></i> View on Map</a></div>
+  <div class="copyright">© 2026 Krishna Cafe. All rights reserved.</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

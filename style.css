@@ -1,0 +1,1186 @@
+/* ========================================
+   RESET & GLOBAL
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #f8ecdc;
+    color: #2b170d;
+}
+
+
+/* ========================================
+   HEADER / CAFE BANNER
+======================================== */
+
+.header {
+    height: 120px;
+    background: url("images/cafe-banner.webp");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.logo-icon {
+    font-size: 45px;
+    color: #ffd27c;
+}
+
+.header h1 {
+    font-family: "Pacifico", cursive;
+    font-size: 38px;
+    font-weight: 400;
+    color: #ffd27c;
+}
+
+.header h1 span {
+    color: #fff;
+}
+
+.header p {
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   NAVIGATION BAR
+======================================== */
+
+.navbar {
+    height: 35px;
+    background: #2c180e;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+    font-size: 7px;
+
+    transition: 0.3s;
+}
+
+.nav-link i {
+    font-size: 10px;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: #ffc85c;
+}
+
+.menu-button {
+    border: 0;
+    background: none;
+    color: #fff;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+
+    background: #32190e;
+    padding: 15px;
+
+    position: sticky;
+    top: 75px;
+    z-index: 999;
+}
+
+.mobile-menu a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+    text-align: center;
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 20px;
+
+    border-radius: 30px;
+
+    background: #ffd17a;
+    color: #241108;
+
+    text-decoration: none;
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    transform: translateY(-3px);
+}
+
+.career-btn {
+    padding: 12px 22px;
+
+    border: 0;
+    border-radius: 25px;
+
+    background: #3a1d0f;
+    color: #fff;
+    
+    cursor: pointer;
+}
+
+.map-btn {
+    margin-top: 25px;
+    text-align: center;
+
+    padding: 12px 20px;
+
+    border: 1px solid #d4a849;
+    border-radius: 25px;
+
+    background: transparent;
+    color: #ffd16a;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.map-btn:hover {
+    background: #ffd16a;
+    color: #29150b;
+}
+
+
+/* ========================================
+   SECTION TITLES
+======================================== */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.section-title span {
+    width: 35px;
+    height: 1px;
+    background: #4a2a1b;
+}
+
+.section-title h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 27px;
+    font-weight: 400;
+}
+
+
+/* ========================================
+   GALLERY SECTION
+======================================== */
+
+.gallery-section {
+    padding: 35px 0;
+    background: #f8ecdc;
+    overflow: hidden;
+}
+
+.gallery-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 15px;
+    padding: 0 20px;
+
+    transition: transform 0.7s ease;
+}
+
+.gallery-card {
+    min-width: 85%;
+    height: 220px;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+
+    background: #cdbba5;
+    border-radius: 50%;
+}
+
+.dot.active {
+    background: #e8a92f;
+}
+
+
+/* ========================================
+   WHY CHOOSE US
+======================================== */
+
+.why-section {
+    padding: 40px 15px;
+    background: #f8ecdc;
+}
+
+.why-container {
+    display: flex;
+    overflow-x: auto;
+
+    gap: 15px;
+    padding: 5px 3px 15px;
+
+    scrollbar-width: none;
+}
+
+.why-container::-webkit-scrollbar {
+    display: none;
+}
+
+.why-card {
+    min-width: 180px;
+
+    background: #f0dfc7;
+
+    border-radius: 20px;
+
+    padding: 25px 15px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+.why-card:hover {
+    transform: translateY(-6px);
+}
+
+.why-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: auto auto 15px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ead0ad;
+
+    font-size: 25px;
+    color: #4b2b19;
+}
+
+.why-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #634b3a;
+}
+
+
+/* ========================================
+   MENU SECTION
+======================================== */
+
+.menu-section {
+    padding: 40px 15px;
+    background: #231108;
+}
+
+.menu-title {
+    color: #fff;
+}
+
+.menu-title span {
+    background: #c69a51;
+}
+
+.menu-slider {
+    display: flex;
+    overflow-x: auto;
+
+    gap: 15px;
+    padding: 5px;
+
+    scrollbar-width: none;
+}
+
+.menu-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-card {
+    min-width: 145px;
+
+    border: 1px solid #9b6d2b;
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    background: #2f190d;
+
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+    border-color: #ffd16a;
+}
+
+.menu-card img {
+    width: 100%;
+    height: 130px;
+
+    object-fit: cover;
+    display: block;
+}
+
+.menu-name {
+    color: #fff;
+
+    padding: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+}
+
+.menu-name i {
+    color: #ffd16a;
+}
+
+
+/* ========================================
+   CAREERS SECTION
+======================================== */
+
+.careers-section {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #f5e4ce;
+}
+
+.careers-section h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.careers-section p {
+    margin: 12px auto 20px;
+
+    max-width: 400px;
+
+    color: #634b3a;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    background: #29150b;
+    color: #fff;
+
+    text-align: center;
+
+    padding: 40px 20px 25px;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.footer-logo i {
+    font-size: 35px;
+    color: #ffd16a;
+}
+
+.footer-logo h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.footer-logo span {
+    color: #ffd16a;
+}
+
+.footer-tagline {
+    margin-top: 10px;
+
+    color: #e6d5c1;
+    font-size: 13px;
+}
+
+.footer-line {
+    width: 80%;
+    height: 1px;
+
+    background: #725033;
+
+    margin: 25px auto;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    text-align: left;
+
+    max-width: 500px;
+    margin: auto;
+}
+
+.footer-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.footer-item > i {
+    color: #ffd16a;
+
+    font-size: 22px;
+
+    margin-top: 3px;
+
+    width: 25px;
+}
+
+.footer-item h3 {
+    color: #ffd16a;
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+}
+
+.footer-item p {
+    color: #ddd0c2;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.copyright {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #533423;
+
+    font-size: 12px;
+    color: #bca99a;
+}
+
+
+/* ========================================
+   ITEM MENU / INDIVIDUAL MENU PAGE
+======================================== */
+
+.item-menu {
+    display: none;
+
+    padding: 25px 18px;
+
+    background: #fff8ef;
+
+    min-height: 100vh;
+}
+
+.item-menu h2 {
+    text-align: center;
+
+    color: #5a321c;
+
+    margin: 25px 0;
+}
+
+.item-menu > button {
+    border: none;
+
+    background: #5a321c;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.item {
+    background: white;
+
+    padding: 16px 18px;
+
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.item span {
+    color: #3d281b;
+    font-size: 16px;
+}
+
+.item strong {
+    color: #a45b24;
+    font-size: 17px;
+}
+
+
+/* ========================================
+   DESKTOP RESPONSIVE DESIGN
+======================================== */
+
+@media (min-width: 768px) {
+
+    /* Header */
+    .header {
+        height: 300px;
+    }
+
+    .header h1 {
+        font-size: 60px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+
+    /* Navigation */
+    .navbar {
+        justify-content: center;
+        gap: 80px;
+    }
+
+    .menu-button {
+        display: none;
+    }
+
+
+    /* Welcome */
+    .welcome {
+        height: 450px;
+    }
+
+    .welcome-overlay {
+        margin-left: 8%;
+        max-width: 600px;
+    }
+
+    .welcome h2 {
+        font-size: 65px;
+    }
+
+
+    /* Gallery */
+    .gallery-card {
+        min-width: 45%;
+        height: 300px;
+    }
+
+
+    /* Why Choose Us */
+    .why-container {
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .why-card {
+        min-width: 180px;
+        max-width: 210px;
+    }
+
+
+    /* Menu */
+    .menu-slider {
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .menu-card {
+        min-width: 170px;
+    }
+
+
+    /* Footer */
+    .footer-info {
+        flex-direction: row;
+        justify-content: center;
+
+        max-width: 900px;
+    }
+
+    .footer-item {
+        min-width: 220px;
+    }
+}
+/* =========================
+   CAREERS
+========================= */
+
+.careers-section1 {
+    padding: 60px 18px;
+    background: #fff8ef;
+    display:none;
+    
+}
+.careers-section1 > button{
+    border: none;
+
+    background: #5a321c;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.careers-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.careers-heading h2 {
+    color: #5a321c;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.careers-heading p {
+    color: #777;
+}
+
+.jobs-container {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+}
+
+.job-card {
+    background: #fff;
+
+    padding: 25px 20px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+}
+
+.job-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #f3dfca;
+
+    color: #8a4f2b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.job-card h3 {
+    color: #5a321c;
+    margin-bottom: 10px;
+}
+
+.job-card p {
+    color: #756b65;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.job-card button {
+    border: none;
+
+    background: #5a321c;
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.job-card button:hover {
+    background: #8a4f2b;
+}
+
+
+/* APPLICATION POPUP */
+
+.application-overlay {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.65);
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    z-index: 9999;
+}
+
+.application-form {
+    max-width: 500px;
+
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 25px 20px;
+
+    border-radius: 18px;
+
+    position: relative;
+}
+
+.application-form h2 {
+    color: #5a321c;
+    margin-bottom: 5px;
+}
+
+.application-form > p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+
+    right: 15px;
+    top: 15px;
+    display: relative;
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f2e5d9;
+
+    color: #5a321c;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.application-form label {
+    display: block;
+
+    margin-top: 13px;
+    margin-bottom: 6px;
+
+    font-weight: 600;
+}
+
+.application-form input,
+.application-form select,
+.application-form textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+.application-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-application {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #5a321c;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* DESKTOP */
+
+@media (min-width: 700px) {
+
+    .jobs-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+/* Hide detailed careers page initially */
+
+#careersPage {
+    display: none;
+    min-height: 100vh;
+    background: #fff8ef;
+    padding: 25px 18px;
+}
+
+
+/* Back button */
+
+.back-careers {
+    border: none;
+    background: #5a321c;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.back-careers:hover {
+    background: #8a4f2b;
+}
+
+/* reviews section */
+.reviews-section {
+    padding: 60px 18px;
+    background: #fff8ef;
+    text-align: center;
+}
+
+.reviews-heading h2 {
+    color: #5a321c;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.reviews-heading p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.reviews-container {
+    max-width: 1100px;
+    margin: auto;
+
+    display: flex;
+    gap: 18px;
+
+    overflow-x: auto;
+    padding: 10px 5px 20px;
+}
+
+.review-card {
+    min-width: 270px;
+
+    background: white;
+    padding: 22px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+    text-align: left;
+}
+
+.review-stars {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.review-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.review-card h3 {
+    color: #5a321c;
+    margin: 15px 0 3px;
+}
+
+.review-card span {
+    color: #888;
+    font-size: 13px;
+}
+
+.write-review-btn {
+    margin-top: 25px;
+
+    border: none;
+    background: #5a321c;
+    color: white;
+
+    padding: 12px 24px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.write-review-btn:hover {
+    background: #8a4f2b;
+}
+
+
+/* Review popup */
+
+.review-overlay {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.65);
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    z-index: 9999;
+}
+
+.review-form {
+    max-width: 500px;
+
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 25px 20px;
+
+    border-radius: 18px;
+
+    position: relative;
+}
+
+.review-form h2 {
+    color: #5a321c;
+}
+
+.review-form p {
+    color: #777;
+}
+
+.review-form label {
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 6px;
+
+    font-weight: 600;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+}
+
+.review-form textarea {
+    height: 110px;
+    resize: vertical;
+}
+
+.close-review {
+    position: absolute;
+
+    right: 15px;
+    top: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f2e5d9;
+
+    color: #5a321c;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.submit-review {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #5a321c;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
