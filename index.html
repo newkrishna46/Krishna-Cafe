@@ -41,32 +41,137 @@
     <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
   </section>
   <section class="why-section" id="about">
-    <div class="section-title"><span></span><h2>Why Choose Us</h2><span></span></div>
-    <div class="why-container">
-      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-leaf"></i></div><h3>Premium Quality</h3><p>We use carefully selected ingredients to deliver quality in every bite.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Hygienic & Safe</h3><p>Clean preparation and hygienic surroundings for a comfortable experience.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-users"></i></div><h3>Friendly Service</h3><p>Our team is always ready to serve you with a welcoming smile.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-heart"></i></div><h3>Trusted by Many</h3><p>Built on quality, consistency and the trust of our customers.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fa-solid fa-mug-hot"></i></div><h3>Great Coffee Experience</h3><p>Freshly prepared beverages made for memorable moments.</p></div>
+
+    <div class="section-title">
+        <span></span>
+        <h2>Why Choose Us</h2>
+        <span></span>
     </div>
-  </section>
-  <section class="menu-section" id="menu">
-    <div class="section-title menu-title"><span></span><h2>Our Menu</h2><span></span></div>
-    <div class="menu-slider">
-      <div class="menu-card" onclick="showMenu('tea')">
-        <img src="images/Tea.webp" alt="Tea">
-        <div class="menu-name">
-          <i class="fa-solid fa-leaf"></i>
-          <span>Tea</span>
+
+    <!-- LEFT ARROW -->
+    <button class="why-arrow why-left" onclick="scrollWhyLeft()">←</button>
+
+    <div class="why-container" id="whySlider">
+
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3>Premium Quality</h3>
+            <p>We use carefully selected ingredients to deliver quality in every bite.</p>
         </div>
-      </div>
-      <div class="menu-card" onclick="showMenu('coffee')"><img src="images/Coffee.webp" alt="Coffee"><div class="menu-name"><i class="fa-solid fa-mug-hot"></i><span>Coffee</span></div></div>
-      <div class="menu-card" onclick="showMenu('malted')"><img src="images/Malted-Powders.webp" alt="Malted Powders"><div class="menu-name"><i class="fa-solid fa-glass-water"></i><span>Malted Powders</span></div></div>
-      <div class="menu-card" onclick="showMenu('snacks')"><img src="images/snacks.webp" alt="Snacks"><div class="menu-name"><i class="fa-solid fa-utensils"></i><span>Snacks</span></div></div>
-      <div class="menu-card" onclick="showMenu('biscuits')"><img src="images/Biscuits.webp" alt="Biscuits"><div class="menu-name"><i class="fa-solid fa-cookie-bite"></i><span>Biscuits</span></div></div>
-      <div class="menu-card" onclick="showMenu('drinks')"><img src="images/Drinks.webp" alt="Drinks"><div class="menu-name"><i class="fa-solid fa-glass-martini"></i><span>Drinks</span></div></div>
+
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3>Hygienic & Safe</h3>
+            <p>Clean preparation and hygienic surroundings for a comfortable experience.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>Friendly Service</h3>
+            <p>Our team is always ready to serve you with a welcoming smile.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <h3>Trusted by Many</h3>
+            <p>Built on quality, consistency and the trust of our customers.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <h3>Great Coffee Experience</h3>
+            <p>Freshly prepared beverages made for memorable moments.</p>
+        </div>
+
     </div>
-  </section>
+
+    <!-- RIGHT ARROW -->
+    <button class="why-arrow why-right" onclick="scrollWhyRight()">→</button>
+
+</section>
+  <section class="menu-section" id="menu">
+
+    <div class="section-title menu-title">
+        <span></span>
+        <h2>Our Menu</h2>
+        <span></span>
+    </div>
+
+    <!-- LEFT ARROW -->
+    <button class="menu-arrow menu-left"
+            onclick="scrollMenuLeft()">
+        ←
+    </button>
+
+    <div class="menu-slider" id="menuSlider">
+
+        <div class="menu-card" onclick="showMenu('tea')">
+            <img src="images/Tea.webp" alt="Tea">
+            <div class="menu-name">
+                <i class="fa-solid fa-leaf"></i>
+                <span>Tea</span>
+            </div>
+        </div>
+
+        <div class="menu-card" onclick="showMenu('coffee')">
+            <img src="images/Coffee.webp" alt="Coffee">
+            <div class="menu-name">
+                <i class="fa-solid fa-mug-hot"></i>
+                <span>Coffee</span>
+            </div>
+        </div>
+
+        <div class="menu-card" onclick="showMenu('malted')">
+            <img src="images/Malted-Powders.webp" alt="Malted Powders">
+            <div class="menu-name">
+                <i class="fa-solid fa-glass-water"></i>
+                <span>Malted Powders</span>
+            </div>
+        </div>
+
+        <div class="menu-card" onclick="showMenu('snacks')">
+            <img src="images/snacks.webp" alt="Snacks">
+            <div class="menu-name">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Snacks</span>
+            </div>
+        </div>
+
+        <div class="menu-card" onclick="showMenu('biscuits')">
+            <img src="images/Biscuits.webp" alt="Biscuits">
+            <div class="menu-name">
+                <i class="fa-solid fa-cookie-bite"></i>
+                <span>Biscuits</span>
+            </div>
+        </div>
+
+        <div class="menu-card" onclick="showMenu('drinks')">
+            <img src="images/Drinks.webp" alt="Drinks">
+            <div class="menu-name">
+                <i class="fa-solid fa-glass-martini"></i>
+                <span>Drinks</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="menu-arrow menu-right"
+            onclick="scrollMenuRight()">
+        →
+    </button>
+
+</section>
 <div id="teaMenu" class="item-menu">
     <button onclick="closeMenu()">← Back</button>
     <h2>🍵 Tea Menu</h2>

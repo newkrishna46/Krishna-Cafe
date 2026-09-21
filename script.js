@@ -65,7 +65,52 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
     });
 });
 
+//WHY we choose us section//
+const whySlider = document.getElementById("whySlider");
+const whyLeft = document.querySelector(".why-left");
+const whyRight = document.querySelector(".why-right");
 
+function updateWhyArrows() {
+
+    const maxScroll =
+        whySlider.scrollWidth - whySlider.clientWidth;
+
+    if (whySlider.scrollLeft <= 5) {
+
+        whyLeft.style.display = "none";
+        whyRight.style.display = "flex";
+
+    } else if (whySlider.scrollLeft >= maxScroll - 5) {
+
+        whyLeft.style.display = "flex";
+        whyRight.style.display = "none";
+
+    } else {
+
+        whyLeft.style.display = "flex";
+        whyRight.style.display = "flex";
+    }
+}
+
+function scrollWhyRight() {
+
+    whySlider.scrollBy({
+        left: 190,
+        behavior: "smooth"
+    });
+}
+
+function scrollWhyLeft() {
+
+    whySlider.scrollBy({
+        left: -190,
+        behavior: "smooth"
+    });
+}
+
+whySlider.addEventListener("scroll", updateWhyArrows);
+
+window.addEventListener("load", updateWhyArrows);
 /* ========================================
    SHOW MENU ITEMS
 ======================================== */
@@ -94,6 +139,57 @@ function showMenu(type) {
         });
     }
 }
+
+//Scroll to side//
+const menuSlider = document.getElementById("menuSlider");
+const rightArrow = document.querySelector(".menu-right");
+const leftArrow = document.querySelector(".menu-left");
+
+function updateMenuArrows() {
+
+    const maxScroll =
+        menuSlider.scrollWidth - menuSlider.clientWidth;
+
+    if (menuSlider.scrollLeft <= 5) {
+        // At beginning
+        leftArrow.style.display = "none";
+        rightArrow.style.display = "flex";
+    }
+    else if (menuSlider.scrollLeft >= maxScroll - 5) {
+        // At end
+        rightArrow.style.display = "none";
+        leftArrow.style.display = "flex";
+    }
+    else {
+        // In middle
+        rightArrow.style.display = "flex";
+        leftArrow.style.display = "flex";
+    }
+}
+
+function scrollMenuRight() {
+
+    menuSlider.scrollBy({
+        left: 190,
+        behavior: "smooth"
+    });
+
+    setTimeout(updateMenuArrows, 400);
+}
+
+function scrollMenuLeft() {
+
+    menuSlider.scrollBy({
+        left: -190,
+        behavior: "smooth"
+    });
+
+    setTimeout(updateMenuArrows, 400);
+}
+
+menuSlider.addEventListener("scroll", updateMenuArrows);
+
+window.addEventListener("load", updateMenuArrows);
 
 
 /* ========================================
@@ -129,7 +225,6 @@ function openCareers() {
     document.querySelector(".careers-section").style.display = "none";
 
     window.scrollTo({
-        top: 0,
         behavior: "smooth"
     });
 }
