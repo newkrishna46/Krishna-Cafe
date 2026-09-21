@@ -1,3 +1,4 @@
+
 /* ========================================
    MOBILE MENU TOGGLE
 ======================================== */
@@ -32,15 +33,9 @@ function moveGallery() {
         `translateX(-${index * width}px)`;
 
     dots.forEach((dot, i) => {
-        dot.classList.toggle(
-            "active",
-            i === index
-        );
+        dot.classList.toggle("active", i === index);
     });
 }
-
-
-/* Automatically move gallery every 3 seconds */
 
 setInterval(moveGallery, 3000);
 
@@ -50,32 +45,24 @@ setInterval(moveGallery, 3000);
 ======================================== */
 
 document.querySelectorAll(".nav-link").forEach(link => {
-
     link.addEventListener("click", () => {
-
         document.querySelectorAll(".nav-link").forEach(item => {
             item.classList.remove("active");
         });
 
         link.classList.add("active");
     });
-
 });
 
 
 /* ========================================
    CLOSE MOBILE MENU
-   When a mobile navigation link is clicked
 ======================================== */
 
 document.querySelectorAll(".mobile-menu a").forEach(link => {
-
     link.addEventListener("click", () => {
-
         document.getElementById("mobileMenu").style.display = "none";
-
     });
-
 });
 
 
@@ -84,31 +71,28 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
 ======================================== */
 
 function showMenu(type) {
+    const menuSections = [
+        "teaMenu",
+        "coffeeMenu",
+        "maltedMenu",
+        "snacksMenu",
+        "biscuitsMenu",
+        "drinksMenu"
+    ];
 
-    // Hide all menu sections
-    document.getElementById("teaMenu").style.display = "none";
-    document.getElementById("coffeeMenu").style.display = "none";
-    document.getElementById("maltedMenu").style.display = "none";
-    document.getElementById("snacksMenu").style.display = "none";
-    document.getElementById("biscuitsMenu").style.display = "none";
-    document.getElementById("drinksMenu").style.display = "none";
+    menuSections.forEach(id => {
+        document.getElementById(id).style.display = "none";
+    });
 
-
-    // Find selected menu
     const menu = document.getElementById(type + "Menu");
 
-
-    // Show selected menu
     if (menu) {
-
         menu.style.display = "block";
 
         menu.scrollIntoView({
             behavior: "smooth"
         });
-
     }
-
 }
 
 
@@ -117,72 +101,70 @@ function showMenu(type) {
 ======================================== */
 
 function closeMenu() {
+    const menuSections = [
+        "teaMenu",
+        "coffeeMenu",
+        "maltedMenu",
+        "snacksMenu",
+        "biscuitsMenu",
+        "drinksMenu"
+    ];
 
-    // Hide all menu sections
-    document.getElementById("teaMenu").style.display = "none";
-    document.getElementById("coffeeMenu").style.display = "none";
-    document.getElementById("maltedMenu").style.display = "none";
-    document.getElementById("snacksMenu").style.display = "none";
-    document.getElementById("biscuitsMenu").style.display = "none";
-    document.getElementById("drinksMenu").style.display = "none";
+    menuSections.forEach(id => {
+        document.getElementById(id).style.display = "none";
+    });
 
-
-    // Return to top
     window.scrollTo({
         behavior: "smooth"
     });
-
 }
+
+
+/* ========================================
+   CAREERS
+======================================== */
+
 function openCareers() {
-
     document.getElementById("careersPage").style.display = "block";
-
-    // Hide main careers introduction
     document.querySelector(".careers-section").style.display = "none";
 
-    // Go to top
     window.scrollTo({
+        top: 0,
         behavior: "smooth"
     });
 }
 
-
 function closeCareers() {
-
     document.getElementById("careersPage").style.display = "none";
-
-    // Show main careers introduction again
     document.querySelector(".careers-section").style.display = "block";
 
-    // Go back to main careers section
     document.querySelector(".careers-section").scrollIntoView({
         behavior: "smooth"
     });
 }
-// Application form 
+
+
+/* ========================================
+   APPLICATION FORM
+======================================== */
 
 function openApplication(position) {
     document.getElementById("applicationBox").style.display = "flex";
-
-    // Automatically fill the selected job
     document.getElementById("appPosition").value = position;
 
-    // Prevent background scrolling
     document.body.style.overflow = "hidden";
 }
 
-
 function closeApplication() {
     document.getElementById("applicationBox").style.display = "none";
-
-    // Enable scrolling again
     document.body.style.overflow = "auto";
 }
 
 
+/* ========================================
+   WHATSAPP JOB APPLICATION
+======================================== */
 
-
-// Whatsapp Messages sender
 document.getElementById("jobForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -192,7 +174,7 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
     const experience = document.getElementById("appExperience").value;
     const message = document.getElementById("appMessage").value;
 
-    const whatsappNumber = "917396960373"; // Your cafe WhatsApp number
+    const whatsappNumber = "917396960373";
 
     const whatsappMessage =
         `*Krishna Cafe - Job Application*%0A%0A` +
@@ -211,7 +193,10 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
     closeApplication();
 });
 
-//review section//
+
+/* ========================================
+   REVIEW FORM
+======================================== */
 
 function openReviewForm() {
     document.getElementById("reviewBox").style.display = "block";
@@ -223,8 +208,12 @@ function closeReviewForm() {
     document.body.style.overflow = "auto";
 }
 
-//reviews form//
-document.getElementById("reviewForm").addEventListener("submit", async function (event) {
+
+/* ========================================
+   SUBMIT REVIEW
+======================================== */
+
+document.getElementById("reviewForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const name = document.getElementById("reviewName").value;
@@ -251,7 +240,6 @@ document.getElementById("reviewForm").addEventListener("submit", async function 
 
             document.getElementById("reviewForm").reset();
             closeReviewForm();
-
             loadReviews();
         } else {
             alert(data.message || "Failed to submit review.");
@@ -263,13 +251,14 @@ document.getElementById("reviewForm").addEventListener("submit", async function 
     }
 });
 
-//load reviews//
+
+/* ========================================
+   LOAD REVIEWS
+======================================== */
+
 async function loadReviews() {
-
     try {
-
         const response = await fetch("http://localhost:5000/api/reviews");
-
         const reviews = await response.json();
 
         const container = document.querySelector(".reviews-container");
@@ -277,7 +266,6 @@ async function loadReviews() {
         container.innerHTML = "";
 
         reviews.forEach(review => {
-
             const stars = "⭐".repeat(review.rating);
 
             const card = document.createElement("div");
@@ -302,9 +290,7 @@ async function loadReviews() {
         });
 
     } catch (error) {
-
         console.error("Failed to load reviews:", error);
-
     }
 }
 
