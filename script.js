@@ -291,11 +291,6 @@ function closeApplication() {
     document.body.style.overflow = "auto";
 }
 
-
-/* ========================================
-   WHATSAPP JOB APPLICATION
-======================================== */
-
 /* ========================================
    WHATSAPP JOB APPLICATION
 ======================================== */

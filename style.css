@@ -329,6 +329,7 @@ body {
 
     .menu-section {
         position: relative;
+        overflow: hidden;
     }
 
     .menu-slider {
@@ -391,7 +392,7 @@ body {
 }
 
     .menu-card {
-        flex: 0 0 165px;
+        flex: 0 0 auto;
 
         position: relative;
 
