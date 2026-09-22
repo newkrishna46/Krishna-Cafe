@@ -321,28 +321,134 @@ body {
     }
 }
 
-/* ==============================
-   MOBILE MENU SLIDER
-================================ */
+/* ========================================
+   MENU SECTION
+======================================== */
+
+.menu-section {
+    position: relative;
+    padding: 40px 15px;
+    background: #231108;
+    overflow: hidden;
+}
+
+.menu-title {
+    color: #fff;
+}
+
+.menu-title span {
+    background: #c69a51;
+}
+
+
+/* ========================================
+   MENU SLIDER
+======================================== */
+
+.menu-slider {
+    display: flex;
+    gap: 15px;
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 5px 0 15px;
+
+    box-sizing: border-box;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.menu-slider::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ========================================
+   MENU CARD
+======================================== */
+
+.menu-card {
+    flex: 0 0 165px;
+
+    position: relative;
+
+    border: 1px solid #9b6d2b;
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    background: #2f190d;
+
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+    border-color: #ffd16a;
+}
+
+.menu-card img {
+    width: 100%;
+    height: 130px;
+
+    object-fit: cover;
+    display: block;
+}
+
+.menu-name {
+    color: #fff;
+
+    padding: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+}
+
+.menu-name i {
+    color: #ffd16a;
+}
+
+
+/* ========================================
+   MENU ARROWS - MOBILE ONLY
+======================================== */
+
+.menu-arrow {
+    display: none;
+}
+
 
 @media (max-width: 600px) {
 
     .menu-section {
         position: relative;
+        overflow: hidden;
     }
 
     .menu-slider {
-        position: relative;
         width: 100%;
         max-width: 100%;
 
         display: flex;
+
         gap: 14px;
 
         overflow-x: auto;
         overflow-y: hidden;
 
         padding: 5px 25px 15px 0;
+
+        box-sizing: border-box;
 
         scroll-behavior: smooth;
 
@@ -353,12 +459,14 @@ body {
         display: none;
     }
 
-        /* CLICKABLE ARROW */
+
+    /* ----------------------------------------
+       ARROW
+    ---------------------------------------- */
 
     .menu-arrow {
         position: absolute;
 
-        right: 5px;
         top: 60%;
 
         transform: translateY(-50%);
@@ -384,107 +492,67 @@ body {
 
         cursor: pointer;
 
-        box-shadow: 0 3px 10px rgba(0,0,0,.25);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
 
         transition: .25s ease;
     }
 
 
-}
-
-    .menu-card {
-        flex: 0 0 165px;
-
-        position: relative;
-
-        border-radius: 14px;
-
-        overflow: hidden;
-    }
-
-.menu-section {
-    padding: 40px 15px;
-    background: #231108;
-}
-.menu-title {
-    color: #fff;
-}
-.menu-title span {
-    background: #c69a51;
-}
-.menu-slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 5px;
-    scrollbar-width: none;
-}
-.menu-slider::-webkit-scrollbar {
-    display: none;
-}
-.menu-card {
-    min-width: 145px;
-    border: 1px solid #9b6d2b;
-    border-radius: 15px;
-    overflow: hidden;
-    background: #2f190d;
-    transition: 0.3s;
-}
-.menu-card:hover {
-    transform: translateY(-6px);
-    border-color: #ffd16a;
-}
-.menu-card img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    display: block;
-}
-.menu-name {
-    color: #fff;
-    padding: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 14px;
-}
-.menu-name i {
-    color: #ffd16a;
-}
     /* LEFT ARROW */
+
     .menu-left {
         left: 5px;
         display: none;
     }
 
+
     /* RIGHT ARROW */
+
     .menu-right {
         right: 5px;
         display: flex;
     }
+
+
+    /* CLICK EFFECT */
+
+    .menu-arrow:active {
+        transform: translateY(-50%) scale(.9);
+    }
+}
+
+
 /* ========================================
-   MENU SECTION - KEEP CONTENT INSIDE
+   DESKTOP
 ======================================== */
 
-.menu-section {
-    position: relative;
-    overflow: hidden;
-}
+@media (min-width: 601px) {
 
-.menu-slider {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    .menu-section {
+        overflow: hidden;
+    }
 
-    display: flex;
-    overflow-x: auto;
+    .menu-slider {
+        justify-content: center;
 
-    padding-right: 15px;
-}
+        overflow: hidden;
 
-.menu-card {
-    flex: 0 0 auto;
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+    .menu-card {
+        flex: 0 0 145px;
+    }
+
+    /* Hide arrows on desktop */
+
+    .menu-left,
+    .menu-right {
+        display: none !important;
+    }
 }
 /* ========================================
    CAREERS SECTION
