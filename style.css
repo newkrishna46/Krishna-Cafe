@@ -329,7 +329,6 @@ body {
 
     .menu-section {
         position: relative;
-        overflow: hidden;
     }
 
     .menu-slider {
@@ -392,7 +391,7 @@ body {
 }
 
     .menu-card {
-        flex: 0 0 auto;
+        flex: 0 0 165px;
 
         position: relative;
 
@@ -462,7 +461,29 @@ body {
         right: 5px;
         display: flex;
     }
+/* ========================================
+   MENU SECTION - KEEP CONTENT INSIDE
+======================================== */
 
+.menu-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-slider {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    overflow-x: auto;
+
+    padding-right: 15px;
+}
+
+.menu-card {
+    flex: 0 0 auto;
+}
 /* ========================================
    CAREERS SECTION
 ======================================== */
