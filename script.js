@@ -260,7 +260,12 @@ function closeApplication() {
    WHATSAPP JOB APPLICATION
 ======================================== */
 
+/* ========================================
+   WHATSAPP JOB APPLICATION
+======================================== */
+
 document.getElementById("jobForm").addEventListener("submit", function(event) {
+
     event.preventDefault();
 
     const name = document.getElementById("appName").value;
@@ -272,22 +277,23 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
     const whatsappNumber = "917396960373";
 
     const whatsappMessage =
-        `*Krishna Cafe - Job Application*%0A%0A` +
-        `*Name:* ${name}%0A` +
-        `*Phone:* ${phone}%0A` +
-        `*Position:* ${position}%0A` +
-        `*Experience:* ${experience}%0A` +
+        `*Krishna Cafe - Job Application*\n\n` +
+        `*Name:* ${name}\n` +
+        `*Phone:* ${phone}\n` +
+        `*Position:* ${position}\n` +
+        `*Experience:* ${experience}\n` +
         `*Message:* ${message}`;
 
     const whatsappURL =
-        `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
+    /* Open WhatsApp ONLY after Submit */
     window.open(whatsappURL, "_blank");
 
     this.reset();
     closeApplication();
-});
 
+});
 
 /* ========================================
    REVIEW FORM
