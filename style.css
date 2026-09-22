@@ -214,6 +214,52 @@ body {
 /* ========================================
    WHY CHOOSE US
 ======================================== */
+.why-section {
+    padding: 40px 15px;
+    background: #f8ecdc;
+}
+.why-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 5px 3px 15px;
+    scrollbar-width: none;
+}
+.why-container::-webkit-scrollbar {
+    display: none;
+}
+.why-card {
+    min-width: 180px;
+    background: #f0dfc7;
+    border-radius: 20px;
+    padding: 25px 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+.why-card:hover {
+    transform: translateY(-6px);
+}
+.why-icon {
+    width: 60px;
+    height: 60px;
+    margin: auto auto 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ead0ad;
+    font-size: 25px;
+    color: #4b2b19;
+}
+.why-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.why-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #634b3a;
+}
 @media (max-width: 600px) {
 
     .why-section {
@@ -274,52 +320,7 @@ body {
         transform: translateY(-50%) scale(.9);
     }
 }
-.why-section {
-    padding: 40px 15px;
-    background: #f8ecdc;
-}
-.why-container {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 5px 3px 15px;
-    scrollbar-width: none;
-}
-.why-container::-webkit-scrollbar {
-    display: none;
-}
-.why-card {
-    min-width: 180px;
-    background: #f0dfc7;
-    border-radius: 20px;
-    padding: 25px 15px;
-    text-align: center;
-    transition: 0.3s;
-}
-.why-card:hover {
-    transform: translateY(-6px);
-}
-.why-icon {
-    width: 60px;
-    height: 60px;
-    margin: auto auto 15px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ead0ad;
-    font-size: 25px;
-    color: #4b2b19;
-}
-.why-card h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-.why-card p {
-    font-size: 12px;
-    line-height: 1.6;
-    color: #634b3a;
-}
+
 /* ==============================
    MOBILE MENU SLIDER
 ================================ */

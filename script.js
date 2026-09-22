@@ -65,32 +65,46 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
     });
 });
 
-//WHY we choose us section//
+// ========================================
+// WHY CHOOSE US SECTION
+// ========================================
+
 const whySlider = document.getElementById("whySlider");
 const whyLeft = document.querySelector(".why-left");
 const whyRight = document.querySelector(".why-right");
 
 function updateWhyArrows() {
 
+    // Hide arrows on desktop
+    if (window.innerWidth > 600) {
+        whyLeft.style.display = "none";
+        whyRight.style.display = "none";
+        return;
+    }
+
     const maxScroll =
         whySlider.scrollWidth - whySlider.clientWidth;
 
     if (whySlider.scrollLeft <= 5) {
 
+        // Beginning
         whyLeft.style.display = "none";
         whyRight.style.display = "flex";
 
     } else if (whySlider.scrollLeft >= maxScroll - 5) {
 
+        // End
         whyLeft.style.display = "flex";
         whyRight.style.display = "none";
 
     } else {
 
+        // Middle
         whyLeft.style.display = "flex";
         whyRight.style.display = "flex";
     }
 }
+
 
 function scrollWhyRight() {
 
@@ -100,6 +114,7 @@ function scrollWhyRight() {
     });
 }
 
+
 function scrollWhyLeft() {
 
     whySlider.scrollBy({
@@ -108,9 +123,12 @@ function scrollWhyLeft() {
     });
 }
 
+
 whySlider.addEventListener("scroll", updateWhyArrows);
 
 window.addEventListener("load", updateWhyArrows);
+
+window.addEventListener("resize", updateWhyArrows);
 /* ========================================
    SHOW MENU ITEMS
 ======================================== */
@@ -140,32 +158,52 @@ function showMenu(type) {
     }
 }
 
-//Scroll to side//
+// ========================================
+// MENU SIDE SCROLL
+// ========================================
+
 const menuSlider = document.getElementById("menuSlider");
 const rightArrow = document.querySelector(".menu-right");
 const leftArrow = document.querySelector(".menu-left");
 
+
 function updateMenuArrows() {
+
+    // Hide arrows on desktop
+    if (window.innerWidth > 600) {
+        leftArrow.style.display = "none";
+        rightArrow.style.display = "none";
+        return;
+    }
 
     const maxScroll =
         menuSlider.scrollWidth - menuSlider.clientWidth;
 
+
     if (menuSlider.scrollLeft <= 5) {
-        // At beginning
+
+        // Beginning
         leftArrow.style.display = "none";
         rightArrow.style.display = "flex";
+
     }
+
     else if (menuSlider.scrollLeft >= maxScroll - 5) {
-        // At end
+
+        // End
         rightArrow.style.display = "none";
         leftArrow.style.display = "flex";
+
     }
+
     else {
-        // In middle
+
+        // Middle
         rightArrow.style.display = "flex";
         leftArrow.style.display = "flex";
     }
 }
+
 
 function scrollMenuRight() {
 
@@ -173,9 +211,8 @@ function scrollMenuRight() {
         left: 190,
         behavior: "smooth"
     });
-
-    setTimeout(updateMenuArrows, 400);
 }
+
 
 function scrollMenuLeft() {
 
@@ -183,15 +220,14 @@ function scrollMenuLeft() {
         left: -190,
         behavior: "smooth"
     });
-
-    setTimeout(updateMenuArrows, 400);
 }
+
 
 menuSlider.addEventListener("scroll", updateMenuArrows);
 
 window.addEventListener("load", updateMenuArrows);
 
-
+window.addEventListener("resize", updateMenuArrows);
 /* ========================================
    CLOSE MENU ITEMS
 ======================================== */
