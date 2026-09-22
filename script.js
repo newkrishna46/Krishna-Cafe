@@ -324,7 +324,7 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
         `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     /* Open WhatsApp ONLY after Submit */
-    window.open(whatsappURL, "_blank");
+    window.location.href= whatsappURL;
 
     this.reset();
     closeApplication();
@@ -358,7 +358,7 @@ document.getElementById("reviewForm").addEventListener("submit", async function(
     const message = document.getElementById("reviewMessage").value;
 
     try {
-        const response = await fetch("http://localhost:5000/api/reviews", {
+        const response = await fetch("https://krishna-cafe-kanigiri.onrender.com/api/reviews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -395,7 +395,7 @@ document.getElementById("reviewForm").addEventListener("submit", async function(
 
 async function loadReviews() {
     try {
-        const response = await fetch("http://localhost:5000/api/reviews");
+        const response = await fetch("https://krishna-cafe-kanigiri.onrender.com/api/reviews");
         const reviews = await response.json();
 
         const container = document.querySelector(".reviews-container");
