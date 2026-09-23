@@ -55,7 +55,7 @@ body {
    NAVIGATION BAR
 ======================================== */
 .navbar {
-    height: 35px;
+    height: 40px;
     background: #2c180e;
     display: flex;
     align-items: center;
@@ -71,12 +71,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    font-size: 7px;
+    gap: 8px;
+    font-size: 10px;
     transition: 0.3s;
 }
 .nav-link i {
-    font-size: 10px;
+    font-size: 11px;
 }
 .nav-link.active,
 .nav-link:hover {
@@ -86,7 +86,7 @@ body {
     border: 0;
     background: none;
     color: #fff;
-    font-size: 10px;
+    font-size: 15px;
     cursor: pointer;
 }
 .mobile-menu {
@@ -101,7 +101,7 @@ body {
     display: block;
     color: #fff;
     text-decoration: none;
-    padding: 12px;
+    padding: 5px;
     text-align: center;
 }
 /* ========================================
@@ -110,7 +110,7 @@ body {
 .menu-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     padding: 13px 20px;
     border-radius: 30px;
     background: #ffd17a;
