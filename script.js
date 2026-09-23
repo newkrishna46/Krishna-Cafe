@@ -305,7 +305,7 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
     const experience = document.getElementById("appExperience").value;
     const message = document.getElementById("appMessage").value;
 
-    const whatsappNumber = "917396960373";
+    const whatsappNumber = "919292353513";
 
     const whatsappMessage =
         `*Krishna Cafe - Job Application*\n\n` +
