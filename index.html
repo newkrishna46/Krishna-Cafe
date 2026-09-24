@@ -369,8 +369,10 @@
   <section class="careers-section" id="careers">
     <h2>Join Our Team</h2>
     <p>Love cafés, people and great service? Come grow with Krishna Cafe.</p>
-    <button class="career-btn" onclick="openCareers()">Explore Careers</button>
-  </section>
+<button class="career-btn"
+        onclick="trackEvent('explore_careers'); openCareers()">
+    Explore Careers
+</button>  </section>
   <!-- CAREERS SECTION -->
 <section id="careersPage" class="careers-section1">
     <button onclick="closeCareers()">← Back</button>
@@ -516,9 +518,9 @@
             <span>Customer</span>
         </div>
     </div>
-    <button class="write-review-btn" onclick="openReviewForm()">
-        Write a Review
-    </button>
+    <button onclick="trackEvent('review_open'); openReviewForm()">
+    Write a Review
+</button>
 </section>
 <div id="reviewBox" class="review-overlay">
     <div class="review-form">
