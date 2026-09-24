@@ -1,15 +1,23 @@
-// ANALYTICS
+/* ========================================
+   ANALYTICS
+======================================== */
+
 function trackEvent(eventName, parameters = {}) {
     if (typeof gtag === "function") {
         gtag("event", eventName, parameters);
     }
 }
+
+
 /* ========================================
    MOBILE MENU TOGGLE
 ======================================== */
 
 function toggleMenu() {
+
     const menu = document.getElementById("mobileMenu");
+
+    if (!menu) return;
 
     menu.style.display =
         menu.style.display === "block"
@@ -28,21 +36,33 @@ const dots = document.querySelectorAll(".dot");
 let index = 0;
 
 function moveGallery() {
-    const cards = document.querySelectorAll(".gallery-card");
+
+    if (!track) return;
+
+    const cards =
+        document.querySelectorAll(".gallery-card");
+
+    if (!cards.length) return;
 
     index = (index + 1) % cards.length;
 
-    const width = cards[0].offsetWidth + 15;
+    const width =
+        cards[0].offsetWidth + 15;
 
     track.style.transform =
         `translateX(-${index * width}px)`;
 
     dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
+        dot.classList.toggle(
+            "active",
+            i === index
+        );
     });
 }
 
-setInterval(moveGallery, 3000);
+if (track) {
+    setInterval(moveGallery, 3000);
+}
 
 
 /* ========================================
@@ -50,13 +70,19 @@ setInterval(moveGallery, 3000);
 ======================================== */
 
 document.querySelectorAll(".nav-link").forEach(link => {
+
     link.addEventListener("click", () => {
-        document.querySelectorAll(".nav-link").forEach(item => {
-            item.classList.remove("active");
-        });
+
+        document
+            .querySelectorAll(".nav-link")
+            .forEach(item => {
+                item.classList.remove("active");
+            });
 
         link.classList.add("active");
+
     });
+
 });
 
 
@@ -64,81 +90,146 @@ document.querySelectorAll(".nav-link").forEach(link => {
    CLOSE MOBILE MENU
 ======================================== */
 
-document.querySelectorAll(".mobile-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("mobileMenu").style.display = "none";
+document
+    .querySelectorAll(".mobile-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            const menu =
+                document.getElementById("mobileMenu");
+
+            if (menu) {
+                menu.style.display = "none";
+            }
+
+        });
+
     });
-});
 
-// ========================================
-// WHY CHOOSE US SECTION
-// ========================================
 
-const whySlider = document.getElementById("whySlider");
-const whyLeft = document.querySelector(".why-left");
-const whyRight = document.querySelector(".why-right");
+/* ========================================
+   WHY CHOOSE US
+======================================== */
+
+const whySlider =
+    document.getElementById("whySlider");
+
+const whyLeft =
+    document.querySelector(".why-left");
+
+const whyRight =
+    document.querySelector(".why-right");
+
 
 function updateWhyArrows() {
 
-    // Hide arrows on desktop
+    if (!whySlider) return;
+
     if (window.innerWidth > 600) {
-        whyLeft.style.display = "none";
-        whyRight.style.display = "none";
+
+        if (whyLeft) {
+            whyLeft.style.display = "none";
+        }
+
+        if (whyRight) {
+            whyRight.style.display = "none";
+        }
+
         return;
     }
 
+
     const maxScroll =
-        whySlider.scrollWidth - whySlider.clientWidth;
+        whySlider.scrollWidth -
+        whySlider.clientWidth;
+
 
     if (whySlider.scrollLeft <= 5) {
 
-        // Beginning
-        whyLeft.style.display = "none";
-        whyRight.style.display = "flex";
+        if (whyLeft) {
+            whyLeft.style.display = "none";
+        }
 
-    } else if (whySlider.scrollLeft >= maxScroll - 5) {
+        if (whyRight) {
+            whyRight.style.display = "flex";
+        }
 
-        // End
-        whyLeft.style.display = "flex";
-        whyRight.style.display = "none";
+    } else if (
+        whySlider.scrollLeft >= maxScroll - 5
+    ) {
+
+        if (whyLeft) {
+            whyLeft.style.display = "flex";
+        }
+
+        if (whyRight) {
+            whyRight.style.display = "none";
+        }
 
     } else {
 
-        // Middle
-        whyLeft.style.display = "flex";
-        whyRight.style.display = "flex";
+        if (whyLeft) {
+            whyLeft.style.display = "flex";
+        }
+
+        if (whyRight) {
+            whyRight.style.display = "flex";
+        }
+
     }
+
 }
 
 
 function scrollWhyRight() {
 
+    if (!whySlider) return;
+
     whySlider.scrollBy({
         left: 190,
         behavior: "smooth"
     });
+
 }
 
 
 function scrollWhyLeft() {
 
+    if (!whySlider) return;
+
     whySlider.scrollBy({
         left: -190,
         behavior: "smooth"
     });
+
 }
 
 
-whySlider.addEventListener("scroll", updateWhyArrows);
+if (whySlider) {
+    whySlider.addEventListener(
+        "scroll",
+        updateWhyArrows
+    );
+}
 
-window.addEventListener("load", updateWhyArrows);
+window.addEventListener(
+    "load",
+    updateWhyArrows
+);
 
-window.addEventListener("resize", updateWhyArrows);
+window.addEventListener(
+    "resize",
+    updateWhyArrows
+);
+
+
 /* ========================================
    SHOW MENU ITEMS
 ======================================== */
 
 function showMenu(type) {
+
     const menuSections = [
         "teaMenu",
         "coffeeMenu",
@@ -148,96 +239,159 @@ function showMenu(type) {
         "drinksMenu"
     ];
 
+
     menuSections.forEach(id => {
-        document.getElementById(id).style.display = "none";
+
+        const section =
+            document.getElementById(id);
+
+        if (section) {
+            section.style.display = "none";
+        }
+
     });
 
-    const menu = document.getElementById(type + "Menu");
+
+    const menu =
+        document.getElementById(type + "Menu");
+
 
     if (menu) {
+
         menu.style.display = "block";
 
         menu.scrollIntoView({
             behavior: "smooth"
         });
+
     }
+
 }
 
-// ========================================
-// MENU SIDE SCROLL
-// ========================================
 
-const menuSlider = document.getElementById("menuSlider");
-const rightArrow = document.querySelector(".menu-right");
-const leftArrow = document.querySelector(".menu-left");
+/* ========================================
+   MENU SIDE SCROLL
+======================================== */
+
+const menuSlider =
+    document.getElementById("menuSlider");
+
+const rightArrow =
+    document.querySelector(".menu-right");
+
+const leftArrow =
+    document.querySelector(".menu-left");
 
 
 function updateMenuArrows() {
 
-    // Hide arrows on desktop
+    if (!menuSlider) return;
+
+
     if (window.innerWidth > 600) {
-        leftArrow.style.display = "none";
-        rightArrow.style.display = "none";
+
+        if (leftArrow) {
+            leftArrow.style.display = "none";
+        }
+
+        if (rightArrow) {
+            rightArrow.style.display = "none";
+        }
+
         return;
     }
 
+
     const maxScroll =
-        menuSlider.scrollWidth - menuSlider.clientWidth;
+        menuSlider.scrollWidth -
+        menuSlider.clientWidth;
 
 
     if (menuSlider.scrollLeft <= 5) {
 
-        // Beginning
-        leftArrow.style.display = "none";
-        rightArrow.style.display = "flex";
+        if (leftArrow) {
+            leftArrow.style.display = "none";
+        }
+
+        if (rightArrow) {
+            rightArrow.style.display = "flex";
+        }
+
+    } else if (
+        menuSlider.scrollLeft >= maxScroll - 5
+    ) {
+
+        if (rightArrow) {
+            rightArrow.style.display = "none";
+        }
+
+        if (leftArrow) {
+            leftArrow.style.display = "flex";
+        }
+
+    } else {
+
+        if (rightArrow) {
+            rightArrow.style.display = "flex";
+        }
+
+        if (leftArrow) {
+            leftArrow.style.display = "flex";
+        }
 
     }
 
-    else if (menuSlider.scrollLeft >= maxScroll - 5) {
-
-        // End
-        rightArrow.style.display = "none";
-        leftArrow.style.display = "flex";
-
-    }
-
-    else {
-
-        // Middle
-        rightArrow.style.display = "flex";
-        leftArrow.style.display = "flex";
-    }
 }
 
 
 function scrollMenuRight() {
 
+    if (!menuSlider) return;
+
     menuSlider.scrollBy({
         left: 190,
         behavior: "smooth"
     });
+
 }
 
 
 function scrollMenuLeft() {
 
+    if (!menuSlider) return;
+
     menuSlider.scrollBy({
         left: -190,
         behavior: "smooth"
     });
+
 }
 
 
-menuSlider.addEventListener("scroll", updateMenuArrows);
+if (menuSlider) {
+    menuSlider.addEventListener(
+        "scroll",
+        updateMenuArrows
+    );
+}
 
-window.addEventListener("load", updateMenuArrows);
+window.addEventListener(
+    "load",
+    updateMenuArrows
+);
 
-window.addEventListener("resize", updateMenuArrows);
+window.addEventListener(
+    "resize",
+    updateMenuArrows
+);
+
+
 /* ========================================
    CLOSE MENU ITEMS
 ======================================== */
 
 function closeMenu() {
+
     const menuSections = [
         "teaMenu",
         "coffeeMenu",
@@ -247,13 +401,24 @@ function closeMenu() {
         "drinksMenu"
     ];
 
+
     menuSections.forEach(id => {
-        document.getElementById(id).style.display = "none";
+
+        const section =
+            document.getElementById(id);
+
+        if (section) {
+            section.style.display = "none";
+        }
+
     });
 
+
     window.scrollTo({
+        top: 0,
         behavior: "smooth"
     });
+
 }
 
 
@@ -262,21 +427,52 @@ function closeMenu() {
 ======================================== */
 
 function openCareers() {
-    document.getElementById("careersPage").style.display = "block";
-    document.querySelector(".careers-section").style.display = "none";
+
+    const careersPage =
+        document.getElementById("careersPage");
+
+    const careersSection =
+        document.querySelector(".careers-section");
+
+
+    if (careersPage) {
+        careersPage.style.display = "block";
+    }
+
+    if (careersSection) {
+        careersSection.style.display = "none";
+    }
+
 
     window.scrollTo({
+        top: 0,
         behavior: "smooth"
     });
+
 }
 
-function closeCareers() {
-    document.getElementById("careersPage").style.display = "none";
-    document.querySelector(".careers-section").style.display = "block";
 
-    document.querySelector(".careers-section").scrollIntoView({
-        behavior: "smooth"
-    });
+function closeCareers() {
+
+    const careersPage =
+        document.getElementById("careersPage");
+
+    const careersSection =
+        document.querySelector(".careers-section");
+
+
+    if (careersPage) {
+        careersPage.style.display = "none";
+    }
+
+    if (careersSection) {
+        careersSection.style.display = "block";
+
+        careersSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
 }
 
 
@@ -285,188 +481,523 @@ function closeCareers() {
 ======================================== */
 
 function openApplication(position) {
-    document.getElementById("applicationBox").style.display = "flex";
-    document.getElementById("appPosition").value = position;
+
+    const applicationBox =
+        document.getElementById("applicationBox");
+
+    const appPosition =
+        document.getElementById("appPosition");
+
+
+    if (applicationBox) {
+        applicationBox.style.display = "flex";
+    }
+
+    if (appPosition) {
+        appPosition.value = position;
+    }
 
     document.body.style.overflow = "hidden";
+
 }
 
+
 function closeApplication() {
-    document.getElementById("applicationBox").style.display = "none";
+
+    const applicationBox =
+        document.getElementById("applicationBox");
+
+
+    if (applicationBox) {
+        applicationBox.style.display = "none";
+    }
+
     document.body.style.overflow = "auto";
+
 }
+
 
 /* ========================================
    WHATSAPP JOB APPLICATION
 ======================================== */
 
-document.getElementById("jobForm").addEventListener("submit", function(event) {
+const jobForm =
+    document.getElementById("jobForm");
 
-    event.preventDefault();
 
-    const name = document.getElementById("appName").value;
-    const phone = document.getElementById("appPhone").value;
-    const position = document.getElementById("appPosition").value;
-    const experience = document.getElementById("appExperience").value;
-    const message = document.getElementById("appMessage").value;
+if (jobForm) {
 
-    const whatsappNumber = "919292353513";
+    jobForm.addEventListener(
+        "submit",
+        function(event) {
 
-    const whatsappMessage =
-        `*Krishna Cafe - Job Application*\n\n` +
-        `*Name:* ${name}\n` +
-        `*Phone:* ${phone}\n` +
-        `*Position:* ${position}\n` +
-        `*Experience:* ${experience}\n` +
-        `*Message:* ${message}`;
+            event.preventDefault();
 
-    const whatsappURL =
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    /* Open WhatsApp ONLY after Submit */
-    window.location.href= whatsappURL;
+            const name =
+                document.getElementById("appName").value;
 
-    this.reset();
-    closeApplication();
+            const phone =
+                document.getElementById("appPhone").value;
 
-});
+            const position =
+                document.getElementById("appPosition").value;
 
-/* ================================
+            const experience =
+                document.getElementById("appExperience").value;
+
+            const message =
+                document.getElementById("appMessage").value;
+
+
+            const whatsappNumber =
+                "919292353513";
+
+
+            const whatsappMessage =
+                `*Krishna Cafe - Job Application*\n\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Position:* ${position}\n` +
+                `*Experience:* ${experience}\n` +
+                `*Message:* ${message}`;
+
+
+            const whatsappURL =
+                `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                    whatsappMessage
+                )}`;
+
+
+            window.location.href =
+                whatsappURL;
+
+
+            this.reset();
+
+            closeApplication();
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   REVIEW VARIABLES
+======================================== */
+
+let allReviews = [];
+
+let showingAllReviews = false;
+
+
+/* ========================================
+   OPEN REVIEW FORM
+======================================== */
+
+function openReviewForm() {
+
+    const reviewBox =
+        document.getElementById("reviewBox");
+
+
+    if (!reviewBox) {
+
+        console.error(
+            "reviewBox element not found"
+        );
+
+        return;
+    }
+
+
+    reviewBox.style.display = "block";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ========================================
+   CLOSE REVIEW FORM
+======================================== */
+
+function closeReviewForm() {
+
+    const reviewBox =
+        document.getElementById("reviewBox");
+
+
+    if (reviewBox) {
+        reviewBox.style.display = "none";
+    }
+
+    document.body.style.overflow = "auto";
+
+}
+
+
+/* ========================================
+   SUBMIT REVIEW
+======================================== */
+
+const reviewForm =
+    document.getElementById("reviewForm");
+
+
+if (reviewForm) {
+
+    reviewForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("reviewName")
+                    .value
+                    .trim();
+
+            const rating =
+                Number(
+                    document.getElementById("reviewRating")
+                        .value
+                );
+
+            const message =
+                document.getElementById("reviewMessage")
+                    .value
+                    .trim();
+
+
+            try {
+
+                const response = await fetch(
+                    "https://krishna-cafe-kanigiri.onrender.com/api/reviews",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: name,
+                            rating: rating,
+                            message: message
+                        })
+                    }
+                );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    trackEvent(
+                        "review_submit",
+                        {
+                            rating: rating
+                        }
+                    );
+
+
+                    alert(
+                        "Thank you for your review! ⭐"
+                    );
+
+
+                    reviewForm.reset();
+
+                    closeReviewForm();
+
+
+                    showingAllReviews = false;
+
+
+                    await loadReviews();
+
+                } else {
+
+                    alert(
+                        data.message ||
+                        "Failed to submit review."
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Review submission error:",
+                    error
+                );
+
+
+                alert(
+                    "Could not connect to the server."
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   LOAD REVIEWS
+======================================== */
+
+async function loadReviews() {
+
+    const container =
+        document.getElementById(
+            "reviewsContainer"
+        );
+
+
+    if (!container) {
+
+        console.error(
+            "reviewsContainer element not found"
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            "https://krishna-cafe-kanigiri.onrender.com/api/reviews"
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load reviews"
+            );
+
+        }
+
+
+        allReviews =
+            await response.json();
+
+
+        renderReviews();
+
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load reviews:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ========================================
    DISPLAY REVIEWS
-================================ */
+======================================== */
 
 function renderReviews() {
 
-    const container = document.getElementById("reviewsContainer");
-    const viewMoreButton = document.getElementById("viewMoreReviews");
+    const container =
+        document.getElementById(
+            "reviewsContainer"
+        );
+
+    const viewMoreButton =
+        document.getElementById(
+            "viewMoreReviews"
+        );
+
+
+    if (!container) return;
+
 
     container.innerHTML = "";
 
-    const reviewsToShow = showingAllReviews
-        ? allReviews
-        : allReviews.slice(0, 2);
+
+    const reviewsToShow =
+        showingAllReviews
+            ? allReviews
+            : allReviews.slice(0, 2);
+
 
     const likedReviews =
-        JSON.parse(localStorage.getItem("likedReviews")) || [];
+        JSON.parse(
+            localStorage.getItem(
+                "likedReviews"
+            )
+        ) || [];
 
 
     reviewsToShow.forEach(review => {
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
-        card.className = "review-card";
+        card.className =
+            "review-card";
 
 
-        /* ================================
-           REVIEW HEADER
-        ================================= */
+        /* REVIEW HEADER */
 
-        const header = document.createElement("div");
+        const header =
+            document.createElement("div");
 
-        header.className = "review-header";
+        header.className =
+            "review-header";
 
 
         /* USER */
 
-        const user = document.createElement("div");
+        const user =
+            document.createElement("div");
 
-        user.className = "review-user";
-
-
-        const icon = document.createElement("i");
-
-        icon.className = "fa-solid fa-user";
+        user.className =
+            "review-user";
 
 
-        const name = document.createElement("h3");
+        const icon =
+            document.createElement("i");
 
-        name.textContent = review.name;
+        icon.className =
+            "fa-solid fa-user";
+
+
+        const name =
+            document.createElement("h3");
+
+        name.textContent =
+            review.name;
 
 
         user.appendChild(icon);
+
         user.appendChild(name);
 
 
         /* DATE + TIME */
 
-        const time = document.createElement("small");
+        const time =
+            document.createElement("small");
 
-        time.className = "review-time";
+        time.className =
+            "review-time";
 
-        const reviewDate = new Date(review.createdAt);
 
-        const date = reviewDate.toLocaleDateString("en-IN", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-        });
+        const reviewDate =
+            new Date(review.createdAt);
 
-        const clock = reviewDate.toLocaleTimeString("en-IN", {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
 
-        time.innerHTML = `${date}<br>${clock}`;
+        const date =
+            reviewDate.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+
+        const clock =
+            reviewDate.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+
+        time.innerHTML =
+            `${date}<br>${clock}`;
 
 
         header.appendChild(user);
+
         header.appendChild(time);
 
 
-        /* ================================
-           RATING STARS
-        ================================= */
+        /* RATING */
 
-        const stars = document.createElement("div");
+        const stars =
+            document.createElement("div");
 
-        stars.className = "review-stars";
+        stars.className =
+            "review-stars";
 
-        stars.textContent = "⭐".repeat(review.rating);
-
-
-        /* ================================
-           REVIEW MESSAGE
-        ================================= */
-
-        const message = document.createElement("p");
-
-        message.className = "review-message";
-
-        message.textContent = `"${review.message}"`;
+        stars.textContent =
+            "⭐".repeat(review.rating);
 
 
-        /* ================================
-           LIKE AREA
-        ================================= */
+        /* MESSAGE */
 
-        const likeArea = document.createElement("div");
+        const message =
+            document.createElement("p");
 
-        likeArea.className = "review-like";
+        message.className =
+            "review-message";
 
-
-        const likeButton = document.createElement("button");
-
-        likeButton.className = "like-review-btn";
+        message.textContent =
+            `"${review.message}"`;
 
 
-        const likeCount = document.createElement("span");
+        /* LIKE AREA */
 
-        likeCount.className = "like-count";
+        const likeArea =
+            document.createElement("div");
 
-        likeCount.textContent = review.likes || 0;
+        likeArea.className =
+            "review-like";
 
 
-        /* ================================
-           CHECK LIKE STATUS
-        ================================= */
+        const likeButton =
+            document.createElement("button");
+
+        likeButton.className =
+            "like-review-btn";
+
+
+        const likeCount =
+            document.createElement("span");
+
+        likeCount.className =
+            "like-count";
+
+        likeCount.textContent =
+            review.likes || 0;
+
+
+        /* CHECK LIKE STATUS */
 
         const alreadyLiked =
-            likedReviews.includes(review._id);
+            likedReviews.includes(
+                review._id
+            );
 
 
         if (alreadyLiked) {
 
-            likeButton.classList.add("liked");
+            likeButton.classList.add(
+                "liked"
+            );
 
             likeButton.innerHTML = `
                 <i class="fa-solid fa-heart"></i>
@@ -483,32 +1014,39 @@ function renderReviews() {
         }
 
 
-        /* ================================
-           LIKE / DISLIKE BUTTON
-        ================================= */
+        /* LIKE / DISLIKE */
 
-        likeButton.addEventListener("click", function() {
+        likeButton.addEventListener(
+            "click",
+            function() {
 
-            likeReview(
-                review._id,
-                likeButton,
-                likeCount
-            );
+                likeReview(
+                    review._id,
+                    likeButton,
+                    likeCount
+                );
 
-        });
-
-
-        likeArea.appendChild(likeButton);
-        likeArea.appendChild(likeCount);
+            }
+        );
 
 
-        /* ================================
-           ADD EVERYTHING TO CARD
-        ================================= */
+        likeArea.appendChild(
+            likeButton
+        );
+
+        likeArea.appendChild(
+            likeCount
+        );
+
+
+        /* ADD CARD */
 
         card.appendChild(header);
+
         card.appendChild(stars);
+
         card.appendChild(message);
+
         card.appendChild(likeArea);
 
         container.appendChild(card);
@@ -516,143 +1054,145 @@ function renderReviews() {
     });
 
 
-    /* ================================
-       VIEW ALL REVIEWS BUTTON
-    ================================= */
+    /* VIEW ALL BUTTON */
 
-    if (allReviews.length > 2) {
+    if (
+        viewMoreButton &&
+        allReviews.length > 2
+    ) {
 
-        viewMoreButton.style.display = "inline-block";
+        viewMoreButton.style.display =
+            "inline-block";
 
-        viewMoreButton.textContent = showingAllReviews
-            ? "Show Less"
-            : "View All Reviews";
 
-    } else {
+        viewMoreButton.textContent =
+            showingAllReviews
+                ? "Show Less"
+                : "View All Reviews";
 
-        viewMoreButton.style.display = "none";
+    } else if (viewMoreButton) {
+
+        viewMoreButton.style.display =
+            "none";
 
     }
 
 }
 
-
-/* ================================
+/* ========================================
    LIKE / DISLIKE REVIEW
-================================ */
+======================================== */
 
-async function likeReview(reviewId, button, countElement) {
+async function likeReview(
+    reviewId,
+    button,
+    countElement
+) {
+    // Prevent multiple clicks while request is processing
+    if (button.disabled) {
+        return;
+    }
 
     const likedReviews =
-        JSON.parse(localStorage.getItem("likedReviews")) || [];
-
-
-    /* CHECK CURRENT STATUS */
+        JSON.parse(
+            localStorage.getItem("likedReviews")
+        ) || [];
 
     const alreadyLiked =
         likedReviews.includes(reviewId);
 
+    const action =
+        alreadyLiked
+            ? "unlike"
+            : "like";
 
-    /* DETERMINE ACTION */
-
-    const action = alreadyLiked
-        ? "unlike"
-        : "like";
-
+    // Lock button immediately
+    button.disabled = true;
 
     try {
-
         const response = await fetch(
             `https://krishna-cafe-kanigiri.onrender.com/api/reviews/${reviewId}/like`,
             {
                 method: "PATCH",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     action: action
                 })
             }
         );
 
+        const data =
+            await response.json();
 
-        const data = await response.json();
-
-
-        if (response.ok) {
-
-
-            /* ================================
-               DISLIKE
-            ================================= */
-
-            if (action === "unlike") {
-
-                const index =
-                    likedReviews.indexOf(reviewId);
-
-                if (index !== -1) {
-
-                    likedReviews.splice(index, 1);
-
-                }
-
-
-                button.classList.remove("liked");
-
-                button.innerHTML = `
-                    <i class="fa-regular fa-heart"></i>
-                    <span>Like</span>
-                `;
-
-            }
-
-
-            /* ================================
-               LIKE
-            ================================= */
-
-            else {
-
-                likedReviews.push(reviewId);
-
-
-                button.classList.add("liked");
-
-                button.innerHTML = `
-                    <i class="fa-solid fa-heart"></i>
-                    <span>Liked</span>
-                `;
-
-            }
-
-
-            /* ================================
-               SAVE DEVICE STATUS
-            ================================= */
-
-            localStorage.setItem(
-                "likedReviews",
-                JSON.stringify(likedReviews)
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                "Like update failed"
             );
-
-
-            /* ================================
-               UPDATE COUNT
-            ================================= */
-
-            countElement.textContent = data.likes;
-
-
-        } else {
-
-            console.error(
-                "Like update failed:",
-                data.message
-            );
-
         }
 
+        /* ================================
+           LIKE
+        ================================= */
+
+        if (action === "like") {
+
+            // Add only once
+            if (!likedReviews.includes(reviewId)) {
+                likedReviews.push(reviewId);
+            }
+
+            button.classList.add("liked");
+
+            button.innerHTML = `
+                <i class="fa-solid fa-heart"></i>
+                <span>Liked</span>
+            `;
+        }
+
+        /* ================================
+           UNLIKE
+        ================================= */
+
+        else {
+
+            const position =
+                likedReviews.indexOf(reviewId);
+
+            if (position !== -1) {
+                likedReviews.splice(
+                    position,
+                    1
+                );
+            }
+
+            button.classList.remove("liked");
+
+            button.innerHTML = `
+                <i class="fa-regular fa-heart"></i>
+                <span>Like</span>
+            `;
+        }
+
+        /* ================================
+           SAVE LIKE STATUS
+        ================================= */
+
+        localStorage.setItem(
+            "likedReviews",
+            JSON.stringify(likedReviews)
+        );
+
+        /* ================================
+           UPDATE COUNT
+        ================================= */
+
+        countElement.textContent =
+            data.likes;
 
     } catch (error) {
 
@@ -661,26 +1201,30 @@ async function likeReview(reviewId, button, countElement) {
             error
         );
 
-    }
+    } finally {
 
+        // Enable button again
+        button.disabled = false;
+    }
 }
 
 
-/* ================================
+/* ========================================
    VIEW ALL / SHOW LESS
-================================ */
+======================================== */
 
 function toggleReviews() {
 
-    showingAllReviews = !showingAllReviews;
+    showingAllReviews =
+        !showingAllReviews;
 
     renderReviews();
 
 }
 
 
-/* ================================
+/* ========================================
    LOAD REVIEWS ON PAGE LOAD
-================================ */
+======================================== */
 
 loadReviews();
