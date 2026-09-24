@@ -450,8 +450,6 @@ async function loadReviews() {
     }
 
 }
-
-
 /* ================================
    DISPLAY REVIEWS
 ================================ */
@@ -467,6 +465,9 @@ function renderReviews() {
         ? allReviews
         : allReviews.slice(0, 2);
 
+    const likedReviews =
+        JSON.parse(localStorage.getItem("likedReviews")) || [];
+
 
     reviewsToShow.forEach(review => {
 
@@ -475,14 +476,16 @@ function renderReviews() {
         card.className = "review-card";
 
 
-        /* Review Header */
+        /* ================================
+           REVIEW HEADER
+        ================================= */
 
         const header = document.createElement("div");
 
         header.className = "review-header";
 
 
-        /* User */
+        /* USER */
 
         const user = document.createElement("div");
 
@@ -503,7 +506,7 @@ function renderReviews() {
         user.appendChild(name);
 
 
-        /* Date & Time */
+        /* DATE + TIME */
 
         const time = document.createElement("small");
 
@@ -529,7 +532,9 @@ function renderReviews() {
         header.appendChild(time);
 
 
-        /* Stars */
+        /* ================================
+           RATING STARS
+        ================================= */
 
         const stars = document.createElement("div");
 
@@ -538,7 +543,9 @@ function renderReviews() {
         stars.textContent = "⭐".repeat(review.rating);
 
 
-        /* Message */
+        /* ================================
+           REVIEW MESSAGE
+        ================================= */
 
         const message = document.createElement("p");
 
@@ -547,18 +554,86 @@ function renderReviews() {
         message.textContent = `"${review.message}"`;
 
 
-        /* Add everything */
+        /* ================================
+           LIKE AREA
+        ================================= */
+
+        const likeArea = document.createElement("div");
+
+        likeArea.className = "review-like";
+
+
+        const likeButton = document.createElement("button");
+
+        likeButton.className = "like-review-btn";
+
+
+        const likeCount = document.createElement("span");
+
+        likeCount.className = "like-count";
+
+        likeCount.textContent = review.likes || 0;
+
+
+        /* ================================
+           CHECK DEVICE LIKE
+        ================================= */
+
+        const alreadyLiked = likedReviews.includes(review._id);
+
+
+        if (alreadyLiked) {
+
+            likeButton.classList.add("liked");
+
+            likeButton.innerHTML = `
+                <i class="fa-solid fa-heart"></i>
+                <span>Liked</span>
+            `;
+
+            likeButton.disabled = true;
+
+        } else {
+
+            likeButton.innerHTML = `
+                <i class="fa-regular fa-heart"></i>
+                <span>Like</span>
+            `;
+
+            likeButton.addEventListener("click", function() {
+
+                likeReview(
+                    review._id,
+                    likeButton,
+                    likeCount
+                );
+
+            });
+
+        }
+
+
+        likeArea.appendChild(likeButton);
+        likeArea.appendChild(likeCount);
+
+
+        /* ================================
+           ADD EVERYTHING TO CARD
+        ================================= */
 
         card.appendChild(header);
         card.appendChild(stars);
         card.appendChild(message);
+        card.appendChild(likeArea);
 
         container.appendChild(card);
 
     });
 
 
-    /* View All Button */
+    /* ================================
+       VIEW ALL REVIEWS BUTTON
+    ================================= */
 
     if (allReviews.length > 2) {
 
@@ -571,6 +646,95 @@ function renderReviews() {
     } else {
 
         viewMoreButton.style.display = "none";
+
+    }
+
+}
+
+
+/* ================================
+   LIKE REVIEW
+================================ */
+
+async function likeReview(reviewId, button, countElement) {
+
+    const likedReviews =
+        JSON.parse(localStorage.getItem("likedReviews")) || [];
+
+
+    /* ================================
+       PREVENT SECOND LIKE
+    ================================= */
+
+    if (likedReviews.includes(reviewId)) {
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            `https://krishna-cafe-kanigiri.onrender.com/api/reviews/${reviewId}/like`,
+            {
+                method: "PATCH"
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (response.ok) {
+
+            /* ================================
+               SAVE LIKE ON THIS DEVICE
+            ================================= */
+
+            likedReviews.push(reviewId);
+
+            localStorage.setItem(
+                "likedReviews",
+                JSON.stringify(likedReviews)
+            );
+
+
+            /* ================================
+               UPDATE LIKE COUNT
+            ================================= */
+
+            countElement.textContent = data.likes;
+
+
+            /* ================================
+               CHANGE BUTTON
+            ================================= */
+
+            button.classList.add("liked");
+
+            button.innerHTML = `
+                <i class="fa-solid fa-heart"></i>
+                <span>Liked</span>
+            `;
+
+            button.disabled = true;
+
+
+        } else {
+
+            console.error(
+                "Like failed:",
+                data.message
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Like error:",
+            error
+        );
 
     }
 

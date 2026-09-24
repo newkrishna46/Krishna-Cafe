@@ -19,6 +19,11 @@ const reviewSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true
+        },
+
+        likes: {
+            type: Number,
+            default: 0
         }
     },
     {

@@ -1000,7 +1000,7 @@ body {
     padding: 10px 5px 20px;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    align-items: center;
+    align-items: stretch;
 }
 
 .reviews-container::-webkit-scrollbar {
@@ -1045,7 +1045,9 @@ body {
 }
 
 
-/* Customer icon + name */
+/* ================================
+   USER ICON + NAME
+================================ */
 
 .review-user {
     display: flex;
@@ -1078,7 +1080,7 @@ body {
 
 
 /* ================================
-   REVIEW DATE & TIME
+   REVIEW DATE + TIME
 ================================ */
 
 .review-time {
@@ -1114,6 +1116,62 @@ body {
 
 
 /* ================================
+   REVIEW LIKE
+================================ */
+
+.review-like {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+
+.like-review-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: #777;
+    padding: 6px 9px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.like-review-btn:hover {
+    background: #fff0f0;
+    color: #d6336c;
+}
+
+.like-review-btn i {
+    font-size: 17px;
+}
+
+.like-review-btn.liked {
+    color: #d6336c;
+}
+
+.like-review-btn:disabled {
+    cursor: default;
+}
+
+.like-review-btn:disabled:hover {
+    background: transparent;
+}
+
+.like-count {
+    color: #888;
+    font-size: 13px;
+    min-width: 10px;
+}
+
+
+/* ================================
    VIEW ALL REVIEWS
 ================================ */
 
@@ -1127,6 +1185,7 @@ body {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .view-more-reviews:hover {
@@ -1147,6 +1206,11 @@ body {
     overflow-y: auto;
     z-index: 9999;
 }
+
+
+/* ================================
+   REVIEW FORM
+================================ */
 
 .review-form {
     max-width: 500px;
@@ -1182,12 +1246,24 @@ body {
     border: 1px solid #ddd;
     border-radius: 9px;
     font-family: inherit;
+    outline: none;
+}
+
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+    border-color: #8a4f2b;
 }
 
 .review-form textarea {
     height: 110px;
     resize: vertical;
 }
+
+
+/* ================================
+   CLOSE REVIEW
+================================ */
 
 .close-review {
     position: absolute;
@@ -1202,6 +1278,15 @@ body {
     font-size: 22px;
     cursor: pointer;
 }
+
+.close-review:hover {
+    background: #e8d3c1;
+}
+
+
+/* ================================
+   SUBMIT REVIEW
+================================ */
 
 .submit-review {
     width: 100%;
@@ -1237,20 +1322,26 @@ body {
 
     .reviews-heading p {
         font-size: 14px;
+        margin-bottom: 18px;
+    }
+
+    .write-review-btn {
+        margin-bottom: 25px;
     }
 
     .reviews-container {
         display: flex;
         flex-direction: column;
         overflow-x: visible;
-        gap: 15px;
+        gap: 10px;
         padding: 5px 2px 15px;
+        align-items: center;
     }
 
     .review-card {
         width: 70%;
         flex: none;
-        padding: 18px;
+        padding: 10px;
     }
 
     .review-time {
@@ -1267,6 +1358,48 @@ body {
 
     .review-message {
         font-size: 15px;
+    }
+
+    .review-like {
+        margin-top: 14px;
+        padding-top: 2px;
+    }
+
+    .like-review-btn {
+        font-size: 12px;
+    }
+
+    .like-review-btn i {
+        font-size: 10px;
+    }
+
+    .like-count {
+        font-size: 10px;
+    }
+
+    .view-more-reviews {
+        margin-top: 8px;
+    }
+
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 400px) {
+
+    .review-card {
+        width: 85%;
+    }
+
+    .review-user h3 {
+        font-size: 16px;
+    }
+
+    .review-time {
+        font-size: 9px;
     }
 
 }
