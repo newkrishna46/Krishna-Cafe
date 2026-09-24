@@ -332,125 +332,6 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
 });
 
 /* ================================
-   REVIEW VARIABLES
-================================ */
-
-let allReviews = [];
-let showingAllReviews = false;
-
-
-/* ================================
-   OPEN REVIEW FORM
-================================ */
-
-function openReviewForm() {
-    document.getElementById("reviewBox").style.display = "block";
-    document.body.style.overflow = "hidden";
-}
-
-
-/* ================================
-   CLOSE REVIEW FORM
-================================ */
-
-function closeReviewForm() {
-    document.getElementById("reviewBox").style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-
-/* ================================
-   SUBMIT REVIEW
-================================ */
-
-document.getElementById("reviewForm").addEventListener("submit", async function(event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById("reviewName").value.trim();
-    const rating = Number(document.getElementById("reviewRating").value);
-    const message = document.getElementById("reviewMessage").value.trim();
-
-    try {
-
-        const response = await fetch(
-            "https://krishna-cafe-kanigiri.onrender.com/api/reviews",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: name,
-                    rating: rating,
-                    message: message
-                })
-            }
-        );
-
-        const data = await response.json();
-
-        if (response.ok) {
-
-            trackEvent("review_submit", {
-                rating: rating
-            });
-
-            alert("Thank you for your review! ⭐");
-
-            document.getElementById("reviewForm").reset();
-
-            closeReviewForm();
-
-            showingAllReviews = false;
-
-            loadReviews();
-
-        } else {
-
-            alert(data.message || "Failed to submit review.");
-
-        }
-
-    } catch (error) {
-
-        console.error("Review submission error:", error);
-
-        alert("Could not connect to the server.");
-
-    }
-
-});
-
-
-/* ================================
-   LOAD REVIEWS
-================================ */
-
-async function loadReviews() {
-
-    try {
-
-        const response = await fetch(
-            "https://krishna-cafe-kanigiri.onrender.com/api/reviews"
-        );
-
-        if (!response.ok) {
-            throw new Error("Failed to load reviews");
-        }
-
-        allReviews = await response.json();
-
-        renderReviews();
-
-    } catch (error) {
-
-        console.error("Failed to load reviews:", error);
-
-    }
-
-}
-/* ================================
    DISPLAY REVIEWS
 ================================ */
 
@@ -576,10 +457,11 @@ function renderReviews() {
 
 
         /* ================================
-           CHECK DEVICE LIKE
+           CHECK LIKE STATUS
         ================================= */
 
-        const alreadyLiked = likedReviews.includes(review._id);
+        const alreadyLiked =
+            likedReviews.includes(review._id);
 
 
         if (alreadyLiked) {
@@ -591,8 +473,6 @@ function renderReviews() {
                 <span>Liked</span>
             `;
 
-            likeButton.disabled = true;
-
         } else {
 
             likeButton.innerHTML = `
@@ -600,17 +480,22 @@ function renderReviews() {
                 <span>Like</span>
             `;
 
-            likeButton.addEventListener("click", function() {
-
-                likeReview(
-                    review._id,
-                    likeButton,
-                    likeCount
-                );
-
-            });
-
         }
+
+
+        /* ================================
+           LIKE / DISLIKE BUTTON
+        ================================= */
+
+        likeButton.addEventListener("click", function() {
+
+            likeReview(
+                review._id,
+                likeButton,
+                likeCount
+            );
+
+        });
 
 
         likeArea.appendChild(likeButton);
@@ -653,7 +538,7 @@ function renderReviews() {
 
 
 /* ================================
-   LIKE REVIEW
+   LIKE / DISLIKE REVIEW
 ================================ */
 
 async function likeReview(reviewId, button, countElement) {
@@ -662,13 +547,17 @@ async function likeReview(reviewId, button, countElement) {
         JSON.parse(localStorage.getItem("likedReviews")) || [];
 
 
-    /* ================================
-       PREVENT SECOND LIKE
-    ================================= */
+    /* CHECK CURRENT STATUS */
 
-    if (likedReviews.includes(reviewId)) {
-        return;
-    }
+    const alreadyLiked =
+        likedReviews.includes(reviewId);
+
+
+    /* DETERMINE ACTION */
+
+    const action = alreadyLiked
+        ? "unlike"
+        : "like";
 
 
     try {
@@ -676,7 +565,13 @@ async function likeReview(reviewId, button, countElement) {
         const response = await fetch(
             `https://krishna-cafe-kanigiri.onrender.com/api/reviews/${reviewId}/like`,
             {
-                method: "PATCH"
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    action: action
+                })
             }
         );
 
@@ -686,11 +581,55 @@ async function likeReview(reviewId, button, countElement) {
 
         if (response.ok) {
 
+
             /* ================================
-               SAVE LIKE ON THIS DEVICE
+               DISLIKE
             ================================= */
 
-            likedReviews.push(reviewId);
+            if (action === "unlike") {
+
+                const index =
+                    likedReviews.indexOf(reviewId);
+
+                if (index !== -1) {
+
+                    likedReviews.splice(index, 1);
+
+                }
+
+
+                button.classList.remove("liked");
+
+                button.innerHTML = `
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Like</span>
+                `;
+
+            }
+
+
+            /* ================================
+               LIKE
+            ================================= */
+
+            else {
+
+                likedReviews.push(reviewId);
+
+
+                button.classList.add("liked");
+
+                button.innerHTML = `
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Liked</span>
+                `;
+
+            }
+
+
+            /* ================================
+               SAVE DEVICE STATUS
+            ================================= */
 
             localStorage.setItem(
                 "likedReviews",
@@ -699,30 +638,16 @@ async function likeReview(reviewId, button, countElement) {
 
 
             /* ================================
-               UPDATE LIKE COUNT
+               UPDATE COUNT
             ================================= */
 
             countElement.textContent = data.likes;
 
 
-            /* ================================
-               CHANGE BUTTON
-            ================================= */
-
-            button.classList.add("liked");
-
-            button.innerHTML = `
-                <i class="fa-solid fa-heart"></i>
-                <span>Liked</span>
-            `;
-
-            button.disabled = true;
-
-
         } else {
 
             console.error(
-                "Like failed:",
+                "Like update failed:",
                 data.message
             );
 
