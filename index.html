@@ -369,10 +369,11 @@
   <section class="careers-section" id="careers">
     <h2>Join Our Team</h2>
     <p>Love cafés, people and great service? Come grow with Krishna Cafe.</p>
-<button class="career-btn"
+    <button class="career-btn"
         onclick="trackEvent('explore_careers'); openCareers()">
     Explore Careers
-</button>  </section>
+</button>
+  </section>
   <!-- CAREERS SECTION -->
 <section id="careersPage" class="careers-section1">
     <button onclick="closeCareers()">← Back</button>
@@ -479,84 +480,85 @@
     </div>
 </div>
 <section class="reviews-section" id="reviews">
+
     <div class="reviews-heading">
         <h2>Customer Reviews</h2>
         <p>See what our customers say about Krishna Cafe ☕</p>
     </div>
-    <div class="reviews-container">
-        <div class="review-card">
-            <div class="review-stars">
-                ⭐⭐⭐⭐⭐
-            </div>
-            <p>
-                "The tea and snacks were really good.
-                Nice place to spend time with friends."
-            </p>
-            <h3>Sadam Sai</h3>
-            <span>Regular Customer</span>
-        </div>
-        <div class="review-card">
-            <div class="review-stars">
-                ⭐⭐⭐⭐⭐
-            </div>
-            <p>
-                "Good quality food and friendly service.
-                I really enjoyed the coffee."
-            </p>
-            <h3>Davood</h3>
-            <span>Customer</span>
-        </div>
-        <div class="review-card">
-            <div class="review-stars">
-                ⭐⭐⭐⭐☆
-            </div>
-            <p>
-                "Nice cafe with reasonable prices.
-                The atmosphere is comfortable."
-            </p>
-            <h3>Rahamthullah</h3>
-            <span>Customer</span>
+
+    <button
+        class="write-review-btn"
+        onclick="trackEvent('review_open'); openReviewForm()">
+        Write a Review
+    </button>
+
+    <div class="reviews-wrapper">
+        <div class="reviews-container" id="reviewsContainer">
+            <!-- Reviews will load here -->
         </div>
     </div>
-    <button onclick="trackEvent('review_open'); openReviewForm()">
-    Write a Review
-</button>
+
+    <button
+        class="view-more-reviews"
+        id="viewMoreReviews"
+        onclick="toggleReviews()"
+        style="display: none;">
+        View All Reviews
+    </button>
+
 </section>
-<div id="reviewBox" class="review-overlay">
-    <div class="review-form">
-        <button class="close-review" onclick="closeReviewForm()">
+
+
+<!-- ================================
+     REVIEW POPUP
+================================ -->
+
+<div class="review-overlay" id="reviewBox">
+
+    <form class="review-form" id="reviewForm">
+
+        <button
+            type="button"
+            class="close-review"
+            onclick="closeReviewForm()">
             ×
         </button>
+
         <h2>Write a Review</h2>
+
         <p>Share your experience at Krishna Cafe ☕</p>
-        <form id="reviewForm">
-            <label>Your Name</label>
-            <input
-                type="text"
-                id="reviewName"
-                placeholder="Enter your name"
-                required
-            >
-            <label>Rating</label>
-            <select id="reviewRating" required>
-                <option value="">Select rating</option>
-                <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-                <option value="4">⭐⭐⭐⭐ 4 Stars</option>
-                <option value="3">⭐⭐⭐ 3 Stars</option>
-                <option value="2">⭐⭐ 2 Stars</option>
-                <option value="1">⭐ 1 Star</option>
-            </select>
-            <label>Your Review</label>
-            <textarea
-                id="reviewMessage"
-                placeholder="Write your experience..."
-                required
-            ></textarea>
-            <button type="submit" class="submit-review">
-                Submit Review
-            </button>
-        </form>
-    </div>
+
+        <label for="reviewName">Your Name</label>
+        <input
+            type="text"
+            id="reviewName"
+            placeholder="Enter your name"
+            required>
+
+        <label for="reviewRating">Rating</label>
+        <select id="reviewRating" required>
+            <option value="">Select rating</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+        </select>
+
+        <label for="reviewMessage">Your Review</label>
+        <textarea
+            id="reviewMessage"
+            placeholder="Write your experience..."
+        ></textarea>
+
+        <button
+            type="submit"
+            class="submit-review">
+            Submit Review
+        </button>
+
+    </form>
+
 </div>
 </main>
 <footer class="footer">

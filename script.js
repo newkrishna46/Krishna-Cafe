@@ -331,14 +331,27 @@ document.getElementById("jobForm").addEventListener("submit", function(event) {
 
 });
 
-/* ========================================
-   REVIEW FORM
-======================================== */
+/* ================================
+   REVIEW VARIABLES
+================================ */
+
+let allReviews = [];
+let showingAllReviews = false;
+
+
+/* ================================
+   OPEN REVIEW FORM
+================================ */
 
 function openReviewForm() {
     document.getElementById("reviewBox").style.display = "block";
     document.body.style.overflow = "hidden";
 }
+
+
+/* ================================
+   CLOSE REVIEW FORM
+================================ */
 
 function closeReviewForm() {
     document.getElementById("reviewBox").style.display = "none";
@@ -346,89 +359,239 @@ function closeReviewForm() {
 }
 
 
-/* ========================================
+/* ================================
    SUBMIT REVIEW
-======================================== */
+================================ */
 
 document.getElementById("reviewForm").addEventListener("submit", async function(event) {
+
     event.preventDefault();
 
-    const name = document.getElementById("reviewName").value;
-    const rating = document.getElementById("reviewRating").value;
-    const message = document.getElementById("reviewMessage").value;
+    const name = document.getElementById("reviewName").value.trim();
+    const rating = Number(document.getElementById("reviewRating").value);
+    const message = document.getElementById("reviewMessage").value.trim();
 
     try {
-        const response = await fetch("https://krishna-cafe-kanigiri.onrender.com/api/reviews", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                rating: Number(rating),
-                message: message
-            })
-        });
+
+        const response = await fetch(
+            "https://krishna-cafe-kanigiri.onrender.com/api/reviews",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    rating: rating,
+                    message: message
+                })
+            }
+        );
 
         const data = await response.json();
 
         if (response.ok) {
+
+            trackEvent("review_submit", {
+                rating: rating
+            });
+
             alert("Thank you for your review! ⭐");
 
             document.getElementById("reviewForm").reset();
+
             closeReviewForm();
+
+            showingAllReviews = false;
+
             loadReviews();
+
         } else {
+
             alert(data.message || "Failed to submit review.");
+
         }
 
     } catch (error) {
-        console.error(error);
+
+        console.error("Review submission error:", error);
+
         alert("Could not connect to the server.");
+
     }
+
 });
 
 
-/* ========================================
+/* ================================
    LOAD REVIEWS
-======================================== */
+================================ */
 
 async function loadReviews() {
+
     try {
-        const response = await fetch("https://krishna-cafe-kanigiri.onrender.com/api/reviews");
-        const reviews = await response.json();
 
-        const container = document.querySelector(".reviews-container");
+        const response = await fetch(
+            "https://krishna-cafe-kanigiri.onrender.com/api/reviews"
+        );
 
-        container.innerHTML = "";
+        if (!response.ok) {
+            throw new Error("Failed to load reviews");
+        }
 
-        reviews.forEach(review => {
-            const stars = "⭐".repeat(review.rating);
+        allReviews = await response.json();
 
-            const card = document.createElement("div");
-
-            card.className = "review-card";
-
-            card.innerHTML = `
-                <div class="review-stars">
-                    ${stars}
-                </div>
-
-                <p>
-                    "${review.message}"
-                </p>
-
-                <h3>${review.name}</h3>
-
-                <span>Customer</span>
-            `;
-
-            container.appendChild(card);
-        });
+        renderReviews();
 
     } catch (error) {
+
         console.error("Failed to load reviews:", error);
+
     }
+
 }
+
+
+/* ================================
+   DISPLAY REVIEWS
+================================ */
+
+function renderReviews() {
+
+    const container = document.getElementById("reviewsContainer");
+    const viewMoreButton = document.getElementById("viewMoreReviews");
+
+    container.innerHTML = "";
+
+    const reviewsToShow = showingAllReviews
+        ? allReviews
+        : allReviews.slice(0, 2);
+
+
+    reviewsToShow.forEach(review => {
+
+        const card = document.createElement("div");
+
+        card.className = "review-card";
+
+
+        /* Review Header */
+
+        const header = document.createElement("div");
+
+        header.className = "review-header";
+
+
+        /* User */
+
+        const user = document.createElement("div");
+
+        user.className = "review-user";
+
+
+        const icon = document.createElement("i");
+
+        icon.className = "fa-solid fa-user";
+
+
+        const name = document.createElement("h3");
+
+        name.textContent = review.name;
+
+
+        user.appendChild(icon);
+        user.appendChild(name);
+
+
+        /* Date & Time */
+
+        const time = document.createElement("small");
+
+        time.className = "review-time";
+
+        const reviewDate = new Date(review.createdAt);
+
+        const date = reviewDate.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+
+        const clock = reviewDate.toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+        time.innerHTML = `${date}<br>${clock}`;
+
+
+        header.appendChild(user);
+        header.appendChild(time);
+
+
+        /* Stars */
+
+        const stars = document.createElement("div");
+
+        stars.className = "review-stars";
+
+        stars.textContent = "⭐".repeat(review.rating);
+
+
+        /* Message */
+
+        const message = document.createElement("p");
+
+        message.className = "review-message";
+
+        message.textContent = `"${review.message}"`;
+
+
+        /* Add everything */
+
+        card.appendChild(header);
+        card.appendChild(stars);
+        card.appendChild(message);
+
+        container.appendChild(card);
+
+    });
+
+
+    /* View All Button */
+
+    if (allReviews.length > 2) {
+
+        viewMoreButton.style.display = "inline-block";
+
+        viewMoreButton.textContent = showingAllReviews
+            ? "Show Less"
+            : "View All Reviews";
+
+    } else {
+
+        viewMoreButton.style.display = "none";
+
+    }
+
+}
+
+
+/* ================================
+   VIEW ALL / SHOW LESS
+================================ */
+
+function toggleReviews() {
+
+    showingAllReviews = !showingAllReviews;
+
+    renderReviews();
+
+}
+
+
+/* ================================
+   LOAD REVIEWS ON PAGE LOAD
+================================ */
 
 loadReviews();

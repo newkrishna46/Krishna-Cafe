@@ -935,55 +935,33 @@ body {
 .back-careers:hover {
     background: #8a4f2b;
 }
-/* reviews section */
+/* ================================
+   REVIEWS SECTION
+================================ */
+
 .reviews-section {
     padding: 60px 18px;
     background: #fff8ef;
     text-align: center;
 }
+
 .reviews-heading h2 {
     color: #5a321c;
     font-size: 28px;
     margin-bottom: 8px;
 }
+
 .reviews-heading p {
     color: #777;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
-.reviews-container {
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
-    gap: 18px;
-    overflow-x: auto;
-    padding: 10px 5px 20px;
-}
-.review-card {
-    min-width: 270px;
-    background: white;
-    padding: 22px;
-    border-radius: 16px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-    text-align: left;
-}
-.review-stars {
-    font-size: 18px;
-    margin-bottom: 12px;
-}
-.review-card p {
-    color: #555;
-    line-height: 1.6;
-}
-.review-card h3 {
-    color: #5a321c;
-    margin: 15px 0 3px;
-}
-.review-card span {
-    color: #888;
-    font-size: 13px;
-}
+
+
+/* ================================
+   WRITE REVIEW BUTTON
+================================ */
+
 .write-review-btn {
-    margin-top: 25px;
     border: none;
     background: #5a321c;
     color: white;
@@ -992,20 +970,184 @@ body {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    margin-bottom: 30px;
 }
+
 .write-review-btn:hover {
     background: #8a4f2b;
 }
-/* Review popup */
+
+
+/* ================================
+   REVIEWS WRAPPER
+================================ */
+
+.reviews-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+}
+
+
+/* ================================
+   REVIEWS CONTAINER
+================================ */
+
+.reviews-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 5px 20px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    align-items: center;
+}
+
+.reviews-container::-webkit-scrollbar {
+    height: 7px;
+}
+
+.reviews-container::-webkit-scrollbar-thumb {
+    background: #b98a67;
+    border-radius: 10px;
+}
+
+.reviews-container::-webkit-scrollbar-track {
+    background: #ead8c7;
+    border-radius: 10px;
+}
+
+
+/* ================================
+   REVIEW CARD
+================================ */
+
+.review-card {
+    flex: 0 0 330px;
+    box-sizing: border-box;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+
+/* ================================
+   REVIEW HEADER
+================================ */
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Customer icon + name */
+
+.review-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.review-user i {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f2e5d9;
+    color: #5a321c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.review-user h3 {
+    color: #5a321c;
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ================================
+   REVIEW DATE & TIME
+================================ */
+
+.review-time {
+    color: #2a2a2a;
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+/* ================================
+   REVIEW STARS
+================================ */
+
+.review-stars {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+
+/* ================================
+   REVIEW MESSAGE
+================================ */
+
+.review-message {
+    color: #5d5c5c;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* ================================
+   VIEW ALL REVIEWS
+================================ */
+
+.view-more-reviews {
+    margin: 10px auto 0;
+    border: none;
+    background: #8a4f2b;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.view-more-reviews:hover {
+    background: #5a321c;
+}
+
+
+/* ================================
+   REVIEW POPUP
+================================ */
+
 .review-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0, 0, 0, 0.65);
     padding: 20px;
     overflow-y: auto;
     z-index: 9999;
 }
+
 .review-form {
     max-width: 500px;
     margin: 40px auto;
@@ -1014,18 +1156,23 @@ body {
     border-radius: 18px;
     position: relative;
 }
+
 .review-form h2 {
     color: #5a321c;
+    margin-bottom: 8px;
 }
+
 .review-form p {
     color: #777;
 }
+
 .review-form label {
     display: block;
     margin-top: 15px;
     margin-bottom: 6px;
     font-weight: 600;
 }
+
 .review-form input,
 .review-form select,
 .review-form textarea {
@@ -1036,10 +1183,12 @@ body {
     border-radius: 9px;
     font-family: inherit;
 }
+
 .review-form textarea {
     height: 110px;
     resize: vertical;
 }
+
 .close-review {
     position: absolute;
     right: 15px;
@@ -1053,6 +1202,7 @@ body {
     font-size: 22px;
     cursor: pointer;
 }
+
 .submit-review {
     width: 100%;
     margin-top: 20px;
@@ -1066,4 +1216,57 @@ body {
     cursor: pointer;
 }
 
+.submit-review:hover {
+    background: #8a4f2b;
+}
 
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .reviews-section {
+        padding: 50px 15px;
+    }
+
+    .reviews-heading h2 {
+        font-size: 25px;
+    }
+
+    .reviews-heading p {
+        font-size: 14px;
+    }
+
+    .reviews-container {
+        display: flex;
+        flex-direction: column;
+        overflow-x: visible;
+        gap: 15px;
+        padding: 5px 2px 15px;
+    }
+
+    .review-card {
+        width: 70%;
+        flex: none;
+        padding: 18px;
+    }
+
+    .review-time {
+        font-size: 10px;
+    }
+
+    .review-user h3 {
+        font-size: 18px;
+    }
+
+    .review-stars {
+        font-size: 15px;
+    }
+
+    .review-message {
+        font-size: 15px;
+    }
+
+}
