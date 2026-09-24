@@ -65,9 +65,12 @@ Krishna-Cafe/
 │
 ├── images/
 │   ├── cafe-banner.jpeg
-│   ├── cafe1.jpg
-│   ├── cafe2.jpg
-│   ├── cafe3.jpg
+│   ├── cafe1.webp
+│   ├── cafe2.webp
+│   ├── cafe3.webp
+│   ├── cafe4.webp
+│   ├── cafe5.webp
+│   ├── cafe6.webp
 │   ├── Tea.webp
 │   ├── Coffee.webp
 │   ├── Snacks.webp
