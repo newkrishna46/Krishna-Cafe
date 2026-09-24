@@ -442,7 +442,6 @@ function openCareers() {
         careersSection.style.display = "none";
     }
 
-
     window.scrollTo({
         behavior: "smooth"
     });
