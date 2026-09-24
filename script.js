@@ -415,7 +415,6 @@ function closeMenu() {
 
 
     window.scrollTo({
-        top: 0,
         behavior: "smooth"
     });
 
@@ -445,7 +444,6 @@ function openCareers() {
 
 
     window.scrollTo({
-        top: 0,
         behavior: "smooth"
     });
 
